@@ -1,5 +1,5 @@
 # 🌟 Arya Programming Language 🌟  
-**Developer:** David K. Angel  
+**Developer:** Arya  
 **Email:** [📧 davidk76011@gmail.com](mailto:davidk76011@gmail.com)  
 **Location:** 🌍 Kolkata, Salt Lake Sector 5, West Bengal, India 🇮🇳  
 
