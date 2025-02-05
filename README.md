@@ -48,9 +48,9 @@ This script will install all necessary dependencies and libraries for Arya.
 
 ---
 
-📌 For Windows
+###📌 For Windows
 
-1. Clone the repository:
+1. **Clone the repository:
 
 git clone https://github.com/david0154/Arya.git
 cd Arya
@@ -67,9 +67,9 @@ This script will install all necessary dependencies and libraries for Arya on Wi
 
 ---
 
-📌 For macOS
+###📌 For macOS
 
-1. Clone the repository:
+1. **Clone the repository:
 
 git clone https://github.com/david0154/Arya.git
 cd Arya
