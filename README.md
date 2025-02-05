@@ -1,7 +1,7 @@
 # 🌟 Arya Programming Language 🌟  
 **Developer:** Arya  
 **Email:** [📧 davidk76011@gmail.com](mailto:davidk76011@gmail.com)  
-**Location:** 🌍 Kolkata, Salt Lake Sector 5, West Bengal, India 🇮🇳  
+**Location:** 🌍 India 🇮🇳  
 
 ---
 
