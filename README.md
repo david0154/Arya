@@ -32,7 +32,7 @@
 
 ### 📌 For Linux (Ubuntu, Debian, CentOS)  
 
-1. Clone the repository:  
+1. **Clone the repository:**  
    ```bash
    git clone https://github.com/david0154/Arya.git
    cd Arya
@@ -40,6 +40,8 @@
 2. Run the installation script:
 
 sudo bash install.sh
+
+This script will install all necessary dependencies and libraries for Arya.
 
 
 
@@ -58,6 +60,8 @@ cd Arya
 
 .\install.ps1
 
+This script will install all necessary dependencies and libraries for Arya on Windows.
+
 
 
 
@@ -74,6 +78,8 @@ cd Arya
 2. Run the macOS installation script:
 
 sudo bash install.sh
+
+This script will install all necessary dependencies and libraries for Arya on macOS.
 
 
 
@@ -158,7 +164,7 @@ LICENSE File (MIT License):
 
 MIT License
 
-Copyright (c) 2025 David 
+Copyright (c) 2025 David
 
 Permission is hereby granted, free of charge, to any person obtaining a copy  
 of this software and associated documentation files (the "Software"), to deal  
@@ -177,4 +183,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  
 SOFTWARE.
-
