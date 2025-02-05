@@ -7,27 +7,74 @@
 
 ---
 
-## 🔥 Introduction  
-Arya is a powerful multi-language programming framework designed to unify **PHP**, **Python**, **JavaScript**, and **HTML** in one language. It supports **Linux**, **Windows**, and **macOS**, ensuring cross-platform compatibility for developers and servers.  
+
+
+
+
+🔥 Introduction
+
+Arya is a powerful, multi-language programming framework designed to unify PHP, Python, JavaScript, and HTML into one seamless language. It offers automatic library management, cross-platform compatibility, and server support tools like Nginx, Apache, and DNS configuration with Let's Encrypt for SSL. Arya works 100% offline after the initial setup.
+
 
 ---
 
-## ✨ Features  
-- **Multi-Language Integration:** Supports PHP, Python, JavaScript, and HTML.  
-- **Cross-Platform Compatibility:** Runs on Linux, Windows, and macOS.  
-- **Offline Support:** Works offline after initial installation.  
-- **Automatic Library Management:** Downloads libraries from official sources.  
-- **Server Tools:** Includes Nginx, Apache, DNS configuration, and Let's Encrypt.  
+✨ Key Features
+
+Multi-Language Support:
+➡️ PHP, Python, JavaScript, HTML
+
+Cross-Platform Compatibility:
+➡️ Supports Linux, Windows, and macOS for both development and server environments
+
+Offline Support:
+➡️ Arya works offline after installation
+
+Automatic Library Management:
+➡️ Libraries and dependencies are downloaded from official sources
+
+Server Tools & Configuration:
+➡️ Includes Nginx, Apache, DNS configuration, and SSL via Let's Encrypt
+
+
 
 ---
 
-## 🚀 Installation  
+🚀 Supported Base Languages & Tools
 
-### 📌 For Linux (Ubuntu, Debian, CentOS)  
-1. Clone the repository:  
-   ```bash
-   git clone https://github.com/david0154/Arya.git
-   cd Arya
+🖥️ Languages
+
+PHP
+
+Python
+
+JavaScript
+
+HTML
+
+
+🔧 Server & Tools
+
+Nginx
+
+Apache
+
+DNS Configuration
+
+Let's Encrypt (for SSL certificates)
+
+
+
+---
+
+🚀 Installation
+
+📌 For Linux (Ubuntu, Debian, CentOS)
+
+1. Clone the repository:
+
+git clone https://github.com/david0154/Arya.git
+cd Arya
+
 
 2. Run the installation script:
 
@@ -91,7 +138,7 @@ arya compile myfile.aya
 
 🌐 Server Configuration
 
-Arya supports automatic server configuration with Apache and Nginx, including SSL setup using Let's Encrypt.
+Arya supports automatic server setup with Apache and Nginx, including SSL configuration using Let's Encrypt for secure connections.
 
 
 ---
@@ -100,7 +147,7 @@ Arya supports automatic server configuration with Apache and Nginx, including SS
 
 Installation fails: Ensure required tools like curl, git, and bash are installed.
 
-Cannot run .aya files: Verify Arya is installed and available in your PATH.
+Cannot run .aya files: Verify that Arya is installed and available in your system PATH.
 
 
 
@@ -108,7 +155,40 @@ Cannot run .aya files: Verify Arya is installed and available in your PATH.
 
 🤝 Contribution
 
-We welcome contributions! Fork the repository, create a branch, and submit a pull request.
+We welcome contributions from the community! Follow these steps to contribute:
+
+1. Fork the repository.
+
+
+2. Create a new branch for your feature or bug fix:
+
+git checkout -b feature-name
+
+
+3. Commit your changes:
+
+git commit -m "Add new feature"
+
+
+4. Push to your forked repository:
+
+git push origin feature-name
+
+
+5. Submit a Pull Request to the main branch.
+
+
+
+Contributor Guidelines
+
+Follow coding standards and best practices.
+
+Ensure your changes are well-tested.
+
+Write clear commit messages and comments.
+
+
+We appreciate your contributions and efforts to make Arya even better!
 
 
 ---
@@ -117,29 +197,19 @@ We welcome contributions! Fork the repository, create a branch, and submit a pul
 
 Arya is open-source and licensed under the MIT License. See the LICENSE file for details.
 
+MIT License  
 
----
-
-🌟 Happy Coding with Arya! 🌟
-
----
-
-## **LICENSE File (MIT License):**
-
-```text
-MIT License
-
-Copyright (c) 2025 David 
+Copyright (c) 2025 David  
 
 Permission is hereby granted, free of charge, to any person obtaining a copy  
 of this software and associated documentation files (the "Software"), to deal  
 in the Software without restriction, including without limitation the rights  
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
 copies of the Software, and to permit persons to whom the Software is  
-furnished to do so, subject to the following conditions:
+furnished to do so, subject to the following conditions:  
 
 The above copyright notice and this permission notice shall be included in all  
-copies or substantial portions of the Software.
+copies or substantial portions of the Software.  
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  
@@ -148,3 +218,8 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  
 SOFTWARE.
+
+
+---
+
+🌟 Happy Coding with Arya! 🌟
