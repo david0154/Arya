@@ -37,9 +37,10 @@
    git clone https://github.com/david0154/Arya.git
    cd Arya
 
-2. Run the installation script:
+2. **Run the installation script:**
+      ```bash
+   sudo bash install.sh
 
-sudo bash install.sh
 
 This script will install all necessary dependencies and libraries for Arya.
 
@@ -48,17 +49,16 @@ This script will install all necessary dependencies and libraries for Arya.
 
 ---
 
-###📌 For Windows
+📌 For Windows
 
-1. **Clone the repository:
-
-git clone https://github.com/david0154/Arya.git
-cd Arya
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/david0154/Arya.git cd Arya
 
 
 2. Run the PowerShell installation script:
-
-.\install.ps1
+   ```bash
+      .\install.ps1
 
 This script will install all necessary dependencies and libraries for Arya on Windows.
 
@@ -69,15 +69,15 @@ This script will install all necessary dependencies and libraries for Arya on Wi
 
 ###📌 For macOS
 
-1. **Clone the repository:
-
-git clone https://github.com/david0154/Arya.git
-cd Arya
+1. **Clone the repository:**
+   ```bash
+    git clone https://github.com/david0154/Arya.git
+   cd Arya
 
 
 2. Run the macOS installation script:
-
-sudo bash install.sh
+   ```bash
+   sudo bash install.sh
 
 This script will install all necessary dependencies and libraries for Arya on macOS.
 
