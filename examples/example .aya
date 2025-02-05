@@ -1,0 +1,15 @@
+<php>
+echo "Hello from Arya Language (PHP)!\n";
+</php>
+
+<python>
+print("Hello from Arya Language (Python)!")
+</python>
+
+<html>
+<h1>Hello from Arya Language (HTML)</h1>
+</html>
+
+<js>
+console.log("Hello from Arya Language (JavaScript)!");
+</js>
