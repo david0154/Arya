@@ -1,9 +1,9 @@
 # 🌟 Arya Programming Language 🌟  
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/david0154/Arya)  
 
-**Developer:** David
+**Developer:** David  
 **Email:** [📧 davidk76011@gmail.com](mailto:davidk76011@gmail.com)  
-**Location:** 🌍  India 🇮🇳  
+**Location:** 🌍 India 🇮🇳  
 
 ---
 
@@ -115,9 +115,36 @@ We welcome contributions! Fork the repository, create a branch, and submit a pul
 
 📄 License
 
-Arya is open-source under the MIT License.
+Arya is open-source and licensed under the MIT License. See the LICENSE file for details.
 
 
 ---
 
 🌟 Happy Coding with Arya! 🌟
+
+---
+
+## **LICENSE File (MIT License):**
+
+```text
+MIT License
+
+Copyright (c) 2025 David 
+
+Permission is hereby granted, free of charge, to any person obtaining a copy  
+of this software and associated documentation files (the "Software"), to deal  
+in the Software without restriction, including without limitation the rights  
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
+copies of the Software, and to permit persons to whom the Software is  
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all  
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER  
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  
+SOFTWARE.
