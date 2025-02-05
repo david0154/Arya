@@ -1,57 +1,75 @@
 # 🌟 Arya Programming Language 🌟  
-**Developer:** Arya  
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/david0154/Arya)  
+
+**Developer:** David
 **Email:** [📧 davidk76011@gmail.com](mailto:davidk76011@gmail.com)  
-**Location:** 🌍 India 🇮🇳  
+**Location:** 🌍  India 🇮🇳  
 
 ---
 
-### 🔥 Introduction  
-**Arya** is a revolutionary programming language framework that merges the best features of **PHP**, **Python**, **JavaScript**, and **HTML** into a single environment. It simplifies development, server setup, and deployment across multiple platforms. Arya supports **100% offline usage** after installation while automatically fetching and installing all required libraries.
+## 🔥 Introduction  
+Arya is a powerful multi-language programming framework designed to unify **PHP**, **Python**, **JavaScript**, and **HTML** in one language. It supports **Linux**, **Windows**, and **macOS**, ensuring cross-platform compatibility for developers and servers.  
 
 ---
 
 ## ✨ Features  
-- ✅ **Multi-Language Support**: Integrates PHP, Python, JavaScript, and HTML.  
-- ✅ **Cross-Platform Compatibility**: Works on Windows, macOS, Linux (Ubuntu, Debian, CentOS).  
-- ✅ **Offline Mode**: Functions completely offline after the first installation.  
-- ✅ **Automatic Server Configuration**: Supports Nginx, Apache, and SSL setup with Let's Encrypt.  
-- ✅ **Command-Line Tools**: Provides a simple interface for compiling and running `.aya` files.  
-- ✅ **Open-Source and Developer-Friendly**.
+- **Multi-Language Integration:** Supports PHP, Python, JavaScript, and HTML.  
+- **Cross-Platform Compatibility:** Runs on Linux, Windows, and macOS.  
+- **Offline Support:** Works offline after initial installation.  
+- **Automatic Library Management:** Downloads libraries from official sources.  
+- **Server Tools:** Includes Nginx, Apache, DNS configuration, and Let's Encrypt.  
 
 ---
 
-## 🚀 Installation Guide  
+
+
+
+
+## 🚀 Installation  
 
 ### 📌 For Linux (Ubuntu, Debian, CentOS)  
-```bash
-git clone https://github.com/yourusername/arya-language.git
-cd arya-language
-sudo bash install_arya_linux.sh
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/david0154/Arya.git
+   cd Arya
+
+2. Run the installation script:
+
+sudo bash install.sh
+
+
+
+
+---
 
 📌 For Windows
 
 1. Clone the repository:
 
-git clone https://github.com/yourusername/arya-language.git
-cd arya-language
+git clone https://github.com/david0154/Arya.git
+cd Arya
 
 
-2. Run the PowerShell script:
+2. Run the PowerShell installation script:
 
-.\install_arya_windows.ps1
+.\install.ps1
 
 
+
+
+---
 
 📌 For macOS
 
-1. Install Homebrew (if not installed):
+1. Clone the repository:
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+git clone https://github.com/david0154/Arya.git
+cd Arya
 
 
-2. Run the installation script:
+2. Run the macOS installation script:
 
-sudo bash install_arya_mac.sh
+sudo bash install.sh
 
 
 
@@ -62,77 +80,46 @@ sudo bash install_arya_mac.sh
 
 ➡️ Running a .aya File
 
-1. Create a new .aya file:
+arya run myfile.aya
 
-nano hello_world.aya
-
-
-2. Write Arya code:
-
-print("Hello, Arya World!")
-
-
-3. Run the file:
-
-arya run hello_world.aya
-
-
-
-➡️ Compile a .aya File
-
-arya compile my_program.aya
-
-➡️ Check Arya Version
+➡️ Checking Arya Version
 
 arya --version
+
+➡️ Compiling a .aya File
+
+arya compile myfile.aya
 
 
 ---
 
 🌐 Server Configuration
 
-Arya provides built-in server configuration tools to set up Apache or Nginx with Let's Encrypt SSL for secure web applications.
-
-Apache: Ideal for PHP and Python-based projects.
-
-Nginx: Suitable for high-performance, scalable web applications.
-
-
-
----
-
-📚 Documentation
-
-Core Commands
+Arya supports automatic server configuration with Apache and Nginx, including SSL setup using Let's Encrypt.
 
 
 ---
 
 ❓ Troubleshooting
 
-Issue: Installation failed on Linux.
-Solution: Make sure you have curl, git, and bash installed.
+Installation fails: Ensure required tools like curl, git, and bash are installed.
 
-Issue: Cannot run .aya files.
-Solution: Ensure the Arya runtime is correctly installed and added to your PATH.
+Cannot run .aya files: Verify Arya is installed and available in your PATH.
 
-
-If you still have issues, check the GitHub Issues page or contact 📧 davidk76011@gmail.com.
 
 
 ---
 
 🤝 Contribution
 
-We welcome contributions from the open-source community!
-Feel free to fork the repository, create feature branches, and submit pull requests.
+We welcome contributions! Fork the repository, create a branch, and submit a pull request.
 
 
 ---
 
 📄 License
 
-Arya is open-source and released under the MIT License.
+Arya is open-source under the MIT License.
 
 
 ---
