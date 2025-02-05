@@ -21,10 +21,6 @@ Arya is a powerful multi-language programming framework designed to unify **PHP*
 
 ---
 
-
-
-
-
 ## 🚀 Installation  
 
 ### 📌 For Linux (Ubuntu, Debian, CentOS)  
