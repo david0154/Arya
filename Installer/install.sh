@@ -20,7 +20,7 @@ for lang in "${LANGUAGES[@]}"; do
     sudo apt-get install -y $lang
 done
 
-# Install Go explicitly if it's missing
+# Check if Go is installed
 echo "Checking if Go is installed..."
 if ! command -v go &> /dev/null
 then
@@ -28,13 +28,29 @@ then
     sudo apt-get install -y golang
 fi
 
-# Verify Go installation
-go_version=$(go version)
-if [[ $? -eq 0 ]]; then
-    echo "Go installed successfully: $go_version"
-else
-    echo "Failed to install Go. Please check the installation steps."
-    exit 1
+# Check if Rust is installed (install cargo if missing)
+echo "Checking if Rust is installed..."
+if ! command -v cargo &> /dev/null
+then
+    echo "Rust not found. Installing Rust..."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+    source $HOME/.cargo/env
+fi
+
+# Install Maven if it's missing
+echo "Checking if Maven is installed..."
+if ! command -v mvn &> /dev/null
+then
+    echo "Maven not found. Installing Maven..."
+    sudo apt-get install -y maven
+fi
+
+# Install pip if it's missing
+echo "Checking if pip is installed..."
+if ! command -v pip &> /dev/null
+then
+    echo "pip not found. Installing pip..."
+    sudo apt-get install -y python3-pip
 fi
 
 # Install Let's Encrypt and Nginx/Apache SSL Configuration
