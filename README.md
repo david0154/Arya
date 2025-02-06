@@ -3,7 +3,7 @@
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/david0154/Arya)  
 [![License](https://img.shields.io/badge/license-MIT-blue)](https://github.com/david0154/Arya/blob/main/LICENSE)  
 [![Platform Support](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-yellowgreen)](https://github.com/david0154/Arya)  
-[![Version](https://img.shields.io/badge/version-1.0.0-orange)](https://github.com/david0154/Arya)  
+[![Version](https://img.shields.io/badge/version-1.2.1-orange)](https://github.com/david0154/Arya)  
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)](https://github.com/david0154/Arya/pulls)  
 [![Supported Languages](https://img.shields.io/badge/languages-PHP%20%7C%20Python%20%7C%20JavaScript%20%7C%20HTML%20%7C%20Java%20%7C%20Go%20%7C%20C%20%7C%20Rust-yellow)](https://github.com/david0154/Arya)
 
