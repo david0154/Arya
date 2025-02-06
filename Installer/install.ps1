@@ -1,70 +1,90 @@
-# This script installs Arya Language, necessary dependencies, and server tools on Windows
+# This script will automatically install Arya Language, base languages (PHP, Python, Node.js, Go, Java, Rust), and necessary dependencies on Windows.
 
-# Developer Info
+# Developer's Info
 $DEVELOPER_EMAIL = "davidk76011@gmail.com"
 $DEVELOPER_ADDRESS = "Kolkata, Salt Lake Sector 5, West Bengal, India 🇮🇳"
 
-# Check if Chocolatey is installed, if not, install it
-if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
-    Write-Host "Installing Chocolatey..."
-    Set-ExecutionPolicy Bypass -Scope Process -Force;
-    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-} else {
-    Write-Host "Chocolatey already installed"
+# Install Base languages and tools
+$languages = @(
+    "php", "python", "nodejs", "nginx", "apache", "openjdk", "golang", "rust", "composer", "npm"
+)
+
+# Updating system and installing base languages
+Write-Host "Updating system and installing base languages..."
+
+# Function to install a program via Chocolatey (if installed)
+function Install-ChocoPackage {
+    param([string]$packageName)
+    choco install $packageName -y
 }
 
-# Install base tools (PHP, Python, Node.js, Git, Apache, Nginx, Java, Go, C, Rust)
-Write-Host "Installing dependencies..."
-choco install php python nodejs git apache nginx openjdk11 golang rust -y
+# Install Chocolatey if it's not installed
+if (-Not (Get-Command choco -ErrorAction SilentlyContinue)) {
+    Write-Host "Installing Chocolatey..."
+    Set-ExecutionPolicy Bypass -Scope Process -Force;
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+}
 
-# Install WSL (Windows Subsystem for Linux)
-Write-Host "Installing WSL..."
-wsl --install
+# Install languages and tools via Chocolatey
+foreach ($lang in $languages) {
+    Write-Host "Installing $lang..."
+    Install-ChocoPackage -packageName $lang
+}
 
-# Install Ubuntu (or any preferred Linux distro for WSL)
-Write-Host "Installing Ubuntu for WSL..."
-wsl --set-default Ubuntu
+# Install Arya Language
+Write-Host "Downloading Arya Language from GitHub..."
+git clone https://github.com/david0154/Arya.git "C:\Program Files\Arya"
 
-# Install Let's Encrypt dependencies
-Write-Host "Installing Let's Encrypt dependencies..."
-choco install certbot -y
-
-# Set up directories for Arya Language installation
-$aryaInstallDir = "C:\Program Files\AryaLanguage"
-New-Item -Path $aryaInstallDir -ItemType Directory -Force
-
-# Clone Arya Language from GitHub
-Write-Host "Cloning Arya Language from GitHub..."
-git clone https://github.com/yourgithub/arya-language.git $aryaInstallDir
+# Install Arya dependencies
+Write-Host "Installing Arya dependencies..."
 
 # Install Python dependencies
 Write-Host "Installing Python dependencies..."
-pip install -r $aryaInstallDir\requirements.txt
+pip install -r "C:\Program Files\Arya\requirements.txt"
 
 # Install Node.js dependencies
 Write-Host "Installing Node.js dependencies..."
-cd $aryaInstallDir
-npm install
+npm install --prefix "C:\Program Files\Arya"
 
-# Setup environment variables for Arya Language
-Write-Host "Setting up Arya environment variables..."
-$envPath = [System.Environment]::GetEnvironmentVariable("Path", [System.EnvironmentVariableTarget]::Machine)
-[System.Environment]::SetEnvironmentVariable("PATH", "$envPath;$aryaInstallDir\bin", [System.EnvironmentVariableTarget]::Machine)
+# Set PATH for Arya Language to be available globally
+$env:Path += ";C:\Program Files\Arya\bin"
+[System.Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
 
-# Install SSL Certificates using Let's Encrypt (for Apache and Nginx)
-Write-Host "Setting up SSL certificates for Apache and Nginx..."
-
-# Apache setup
-certbot --apache --non-interactive --agree-tos --email $DEVELOPER_EMAIL
-
-# Nginx setup
-certbot --nginx --non-interactive --agree-tos --email $DEVELOPER_EMAIL
-
-# Verify Arya Language Installation
-Write-Host "Verifying Arya Language installation..."
+# Verify Arya installation
+Write-Host "Verifying Arya installation..."
 arya --version
 
-# Completion message
+# Install Libraries for each language
+
+# PHP Libraries Installation using Composer
+Write-Host "Installing PHP Libraries..."
+composer global require laravel/installer symfony/console doctrine/orm phpunit/phpunit
+
+# Python Libraries Installation
+Write-Host "Installing Python Libraries..."
+pip install numpy pandas scikit-learn tensorflow keras flask django requests beautifulsoup4 matplotlib
+
+# Node.js Libraries Installation
+Write-Host "Installing Node.js Libraries..."
+npm install express react lodash axios mongoose socket.io moment
+
+# Go Libraries Installation
+Write-Host "Installing Go Libraries..."
+go get github.com/gin-gonic/gin golang.org/x/tools github.com/sirupsen/logrus
+
+# Java Libraries Installation (using Maven)
+Write-Host "Installing Java Libraries..."
+mvn install org.springframework.boot:spring-boot-starter org.apache.commons:commons-lang3 org.hibernate:hibernate-core
+
+# Rust Libraries Installation
+Write-Host "Installing Rust Libraries..."
+cargo install rocket actix-web serde serde_json
+
+Write-Host "All base language libraries installed successfully!"
+
+# Completion Message
 Write-Host "Installation completed successfully!"
+
+# Print developer info
 Write-Host "Developer: $DEVELOPER_EMAIL"
 Write-Host "Address: $DEVELOPER_ADDRESS"
