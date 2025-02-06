@@ -20,6 +20,8 @@
 ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
 ![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
 
+[![Arya Badge](https://img.shields.io/badge/Arya-Programming%20Language-blue?style=for-the-badge&logo=languageicon&logoColor=white)](https://github.com/david0154/Arya)
+
 **Developer:** David  
 **Email:** [📧 davidk76011@gmail.com](mailto:davidk76011@gmail.com)  
 **Location:** 🌍 India 🇮🇳  
