@@ -7,7 +7,7 @@ DEVELOPER_EMAIL="davidk76011@gmail.com"
 DEVELOPER_ADDRESS="Kolkata, Salt Lake Sector 5, West Bengal, India 🇮🇳"
 
 # Base languages to install
-LANGUAGES=("php" "python3" "nodejs" "nginx" "apache2" "openjdk-11-jdk" "golang" "gcc" "rustc" "composer" "npm")
+LANGUAGES=("php" "python3" "nodejs" "nginx" "apache2" "openjdk-11-jdk" "golang" "gcc" "rustc" "composer" "npm" "maven" "rust")
 
 # Update package lists and upgrade the system
 echo "Updating system packages..."
