@@ -34,7 +34,7 @@
 
 
 ---
-![Arya](https://img.shields.io/badge/Arya-Programming%20Language-blue?style=for-the-badge&logo=https://raw.githubusercontent.com/david0154/Arya/main/Arya.png)
+![Arya](https://img.shields.io/badge/Arya-green?style=for-the-badge&logo=https://raw.githubusercontent.com/david0154/Arya/main/Arya.png)
 
 ---
 
