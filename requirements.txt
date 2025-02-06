@@ -1,0 +1,36 @@
+# Core Libraries for Arya Language
+antlr4-python3-runtime==4.9.3       # For parsing and compiling Arya code (if using ANTLR for parsing)
+ply==3.11                            # Python Lex-Yacc, used for language parsing
+flake8==3.9.2                         # For linting the Arya codebase
+pytest==6.2.5                         # For testing Arya Language functionality
+requests==2.26.0                      # For HTTP requests, if Arya requires web access
+numpy==1.21.2                         # Numerical operations library (used in language computations)
+pandas==1.3.3                         # Data handling (optional, depending on the language features)
+scikit-learn==0.24.2                  # Machine learning library (if Arya has AI components)
+tensorflow==2.5.0                     # Deep learning (if Arya is used in AI-related tasks)
+flask==2.0.1                          # Web framework (if Arya has a web server component)
+django==3.2.7                         # Web framework (if Arya has a web server component)
+sqlalchemy==1.4.22                    # For database management
+jupyter==1.0.0                        # For interactive Python work (if Arya has a REPL or IDE integration)
+matplotlib==3.4.3                     # For plotting graphs (if Arya includes visualization tools)
+tornado==6.1.0                        # Web server framework (if Arya needs concurrency handling)
+
+# Optional libraries depending on the use case
+beautifulsoup4==4.10.0                # Web scraping (if Arya needs to scrape web content)
+pillow==8.3.2                         # Imaging (optional if Arya processes images)
+sympy==1.8                            # Symbolic mathematics (if Arya deals with math-related tasks)
+
+# Optional libraries for building a custom parser/interpreter
+lark-parser==0.11.3                   # Another library for building parsers
+plyplus==1.8.0                        # Another parsing library
+
+# Tools for building language
+pyyaml==5.4.1                         # YAML parsing (for configuration files)
+jsonschema==3.2.0                     # JSON schema validation
+pytest-cov==2.12.1                    # For code coverage in tests
+tox==3.24.4                           # Automation tool for testing Arya across environments
+
+# Version control and project management
+gitpython==3.1.24                     # For interacting with Git repositories (if Arya integrates with Git)
+black==21.9b0                         # Code formatting tool
+autopep8==1.5.7                       # Code formatting tool
