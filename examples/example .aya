@@ -13,3 +13,33 @@ print("Hello from Arya Language (Python)!")
 <js>
 console.log("Hello from Arya Language (JavaScript)!");
 </js>
+
+<java>
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello from Arya Language (Java)!");
+    }
+}
+</java>
+
+<go>
+package main
+import "fmt"
+func main() {
+    fmt.Println("Hello from Arya Language (Go)!")
+}
+</go>
+
+<c>
+#include <stdio.h>
+int main() {
+    printf("Hello from Arya Language (C)!\n");
+    return 0;
+}
+</c>
+
+<rust>
+fn main() {
+    println!("Hello from Arya Language (Rust)!");
+}
+</rust>
