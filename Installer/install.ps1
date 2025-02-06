@@ -13,9 +13,9 @@ if (-not (Get-Command choco -ErrorAction SilentlyContinue)) {
     Write-Host "Chocolatey already installed"
 }
 
-# Install base tools (PHP, Python, Node.js, Git, Apache, Nginx)
+# Install base tools (PHP, Python, Node.js, Git, Apache, Nginx, Java, Go, C, Rust)
 Write-Host "Installing dependencies..."
-choco install php python nodejs git apache nginx -y
+choco install php python nodejs git apache nginx openjdk11 golang rust -y
 
 # Install WSL (Windows Subsystem for Linux)
 Write-Host "Installing WSL..."
