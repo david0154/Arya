@@ -30,21 +30,32 @@
 
 ## 🔥 Introduction  
 
-**Arya** is a powerful, multi-language programming framework designed to unify **PHP**, **Python**, **JavaScript**, **HTML**, **Java**, **Go**, **C**, and **Rust** into one seamless language. It offers automatic library management, cross-platform compatibility, and server support tools like **Nginx**, **Apache**, and **DNS configuration** with **Let's Encrypt** for SSL. Arya works **100% offline** after the initial setup.
+**Arya** is a revolutionary programming framework that consolidates **PHP**, **Python**, **JavaScript**, **HTML**, **Java**, **Go**, **C**, and **Rust** into a single, cohesive language. Designed to enhance the developer experience, Arya integrates powerful cross-platform capabilities, automatic library management, and built-in server support tools like **Nginx**, **Apache**, and **DNS configuration**, including **Let's Encrypt** for easy SSL setup. Once the initial setup is done, **Arya** operates **100% offline**, providing developers with a fully functional environment even without an internet connection.
 
-
----
 ![Arya](https://img.shields.io/badge/Arya-green?style=for-the-badge&logo=https://raw.githubusercontent.com/david0154/Arya/main/Arya.png)
 
----
+## ✨ Key Features  
 
-## ✨ Features  
+- **Seamless Multi-Language Integration:**  
+  Arya supports a wide range of languages, including **PHP**, **Python**, **JavaScript**, **Go**, **C**, **Java**, **Rust**, and **HTML**. This allows you to leverage the strengths of each language within a single unified framework, making cross-language development more efficient and less cumbersome.  
 
-- **Multi-Language Integration:** Supports PHP, Python, JavaScript,Go,C,Java,Rust and HTML.  
-- **Cross-Platform Compatibility:** Runs on Linux, Windows, and macOS.  
-- **Offline Support:** Works offline after initial installation.  
-- **Automatic Library Management:** Downloads libraries from official sources.  
-- **Server Tools:** Includes Nginx, Apache, DNS configuration, and Let's Encrypt.  
+- **True Cross-Platform Support:**  
+  Arya seamlessly runs on all major operating systems, including **Linux**, **Windows**, and **macOS**, ensuring your applications and projects are portable and easily manageable regardless of the platform.  
+
+- **Work Offline, Always:**  
+  Once installed, Arya runs fully **offline**, empowering you to work in environments with limited or no internet access, making it perfect for developers who need reliable, offline functionality.  
+
+- **Automatic Library Management:**  
+  Arya automatically handles library dependencies and ensures you always have the right libraries from trusted official sources. You don’t need to manually track versions or resolve conflicts, streamlining the development process.  
+
+- **Comprehensive Server Tools:**  
+  Arya comes equipped with powerful server management tools such as **Nginx**, **Apache**, **DNS configuration**, and **Let’s Encrypt SSL** setup. These tools ensure that your web applications are secure, stable, and easily deployable without needing third-party services.
+
+## 🔧 Arya’s Own Library System
+
+Arya introduces an advanced **library management system** that goes beyond traditional language-specific libraries. Arya's framework unifies libraries across different languages, allowing you to manage and share libraries across **PHP**, **Python**, **JavaScript**, **Go**, **C**, **Java**, **Rust**, and **HTML** within a single integrated system. This eliminates the usual barriers between languages and makes it incredibly easy to switch or integrate languages within your projects. 
+
+By using **Arya language libraries**, you ensure that all dependencies are handled efficiently, minimizing version conflicts and providing a consistent development experience across languages. Whether you are developing in **Python** for machine learning or **PHP** for web applications, Arya optimizes your workflow and ensures smooth interoperability between languages and libraries.
 
 ---
 
