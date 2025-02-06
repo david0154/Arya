@@ -87,18 +87,41 @@ This script will install all necessary dependencies and libraries for Arya on ma
 ---
 
 🎯 Usage Instructions
-
-Running a .aya File:
-
+  ### arya Run a `.aya` File  
+```bash
 arya run myfile.aya
+```
 
-Checking Arya Version:
-
-arya --version
-
-Compiling a .aya File:
-
+### arya Compile a `.aya` File  
+```bash
 arya compile myfile.aya
+```
+
+### arya Check Arya Version  
+```bash
+arya --version
+```
+
+### arya Get Help  
+```bash
+arya --help
+```
+
+### arya List Installed Libraries  
+```bash
+arya list-libs
+```
+
+### arya Install a Specific Library  
+```bash
+arya install <library-name>
+```
+
+### arya Update Arya  
+    ```bash
+      arya update
+
+  
 
 
 
