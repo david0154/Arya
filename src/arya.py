@@ -1,58 +1,49 @@
-#!/usr/bin/env python3
-
-import os
-import sys
 import subprocess
-import re
+import os
 
-# Supported languages and their commands
+# Supported languages and their corresponding commands
 LANGUAGES = {
     "php": {"start": "<php>", "end": "</php>", "command": "php"},
     "python": {"start": "<python>", "end": "</python>", "command": "python3"},
     "html": {"start": "<html>", "end": "</html>", "command": "cat"},
     "js": {"start": "<js>", "end": "</js>", "command": "node"},
+    "java": {"start": "<java>", "end": "</java>", "command": "java", "compile": "javac"},
+    "go": {"start": "<go>", "end": "</go>", "command": "go run"},
+    "c": {"start": "<c>", "end": "</c>", "command": "gcc", "compile": "gcc -o temp_c"},
+    "rust": {"start": "<rust>", "end": "</rust>", "command": "cargo run", "compile": "cargo build"},
 }
-
-def read_file(file_path):
-    """Reads the content of a file."""
-    with open(file_path, "r") as file:
-        return file.read()
-
-def extract_blocks(code):
-    """Extracts code blocks for each language."""
-    blocks = []
-    for lang, config in LANGUAGES.items():
-        pattern = re.compile(f"{re.escape(config['start'])}(.*?){re.escape(config['end'])}", re.DOTALL)
-        for match in pattern.findall(code):
-            blocks.append((lang, match.strip()))
-    return blocks
 
 def execute_code(lang, code):
     """Executes the given code block using the appropriate engine."""
     temp_file = f"temp.{lang}"
     with open(temp_file, "w") as file:
         file.write(code)
+    
+    if lang == "java":
+        # Compile and run Java
+        compile_command = LANGUAGES[lang].get("compile", "")
+        if compile_command:
+            subprocess.run([compile_command, temp_file], capture_output=True, text=True)
+            temp_file = "temp.class"  # Java generates .class file
+    elif lang == "go" or lang == "rust":
+        # For Go and Rust, we can directly run without separate compilation.
+        pass
+    elif lang == "c":
+        # Compile and run C
+        subprocess.run([LANGUAGES[lang]["compile"], temp_file], capture_output=True, text=True)
+        temp_file = "temp_c"  # C generates an executable
+    else:
+        # Default to non-compiling languages (PHP, Python, JS, HTML)
+        pass
+
+    # Execute the code
     command = LANGUAGES[lang]["command"]
     result = subprocess.run([command, temp_file], capture_output=True, text=True)
-    os.remove(temp_file)
+    os.remove(temp_file)  # Clean up temporary file
     return result.stdout
 
-def execute_aya_file(file_path):
-    """Executes an Arya (.aya) file."""
-    if not file_path.endswith(".aya"):
-        print("Error: File must have .aya extension")
-        return
-
-    code = read_file(file_path)
-    blocks = extract_blocks(code)
-
-    for lang, snippet in blocks:
-        print(f"\nExecuting {lang.upper()} block...")
-        output = execute_code(lang, snippet)
-        print(output)
-
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: arya <file.aya>")
-    else:
-        execute_aya_file(sys.argv[1])
+    code = input("Enter code to execute: ")
+    lang = input("Enter language (php, python, js, java, go, c, rust): ")
+    output = execute_code(lang, code)
+    print(output)
