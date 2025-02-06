@@ -32,13 +32,13 @@
 
 ---
 
-* ![Arya](https://img.shields.io/badge/Arya-HexColorCode?style=for-the-badge&logo=languageicon&logoColor=white)](https://github.com/david0154/Arya)
+* ![Arya](https://img.shields.io/badge/Arya-HexColorCode?style=for-the-badge&logo=languageicon&logoColor=white)
 
 ---
 
 ## ✨ Features  
 
-- **Multi-Language Integration:** Supports PHP, Python, JavaScript, and HTML.  
+- **Multi-Language Integration:** Supports PHP, Python, JavaScript,Go,C,Java,Rust and HTML.  
 - **Cross-Platform Compatibility:** Runs on Linux, Windows, and macOS.  
 - **Offline Support:** Works offline after initial installation.  
 - **Automatic Library Management:** Downloads libraries from official sources.  
