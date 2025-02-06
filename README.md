@@ -5,6 +5,7 @@
 [![Platform Support](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-yellowgreen)](https://github.com/david0154/Arya)  
 [![Version](https://img.shields.io/badge/version-1.0.0-orange)](https://github.com/david0154/Arya)  
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)](https://github.com/david0154/Arya/pulls)  
+[![Supported Languages](https://img.shields.io/badge/languages-PHP%20%7C%20Python%20%7C%20JavaScript%20%7C%20HTML-yellow)](https://github.com/david0154/Arya)
 
 **Developer:** David  
 **Email:** [📧 davidk76011@gmail.com](mailto:davidk76011@gmail.com)  
