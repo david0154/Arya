@@ -32,9 +32,6 @@
 
 **Arya** is a powerful, multi-language programming framework designed to unify **PHP**, **Python**, **JavaScript**, **HTML**, **Java**, **Go**, **C**, and **Rust** into one seamless language. It offers automatic library management, cross-platform compatibility, and server support tools like **Nginx**, **Apache**, and **DNS configuration** with **Let's Encrypt** for SSL. Arya works **100% offline** after the initial setup.
 
----
-
-* ![Arya](https://img.shields.io/badge/Arya-HexColorCode?style=for-the-badge&logo=languageicon&logoColor=white)
 
 ---
 
