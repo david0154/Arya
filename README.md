@@ -5,7 +5,20 @@
 [![Platform Support](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-yellowgreen)](https://github.com/david0154/Arya)  
 [![Version](https://img.shields.io/badge/version-1.0.0-orange)](https://github.com/david0154/Arya)  
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)](https://github.com/david0154/Arya/pulls)  
-[![Supported Languages](https://img.shields.io/badge/languages-PHP%20%7C%20Python%20%7C%20JavaScript%20%7C%20HTML-yellow)](https://github.com/david0154/Arya)
+[![Supported Languages](https://img.shields.io/badge/languages-PHP%20%7C%20Python%20%7C%20JavaScript%20%7C%20HTML%20%7C%20Java%20%7C%20Go%20%7C%20C%20%7C%20Rust-yellow)](https://github.com/david0154/Arya)
+
+![Arya Logo](arya.png)  *(Place your `arya.png` logo file in the same directory as your README)*
+
+<br>  *(Add a line break for spacing)*
+
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Go](https://img.shields.io/badge/Go-00ADD5?style=for-the-badge&logo=go&logoColor=white)
+![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
 
 **Developer:** David  
 **Email:** [📧 davidk76011@gmail.com](mailto:davidk76011@gmail.com)  
@@ -15,7 +28,18 @@
 
 ## 🔥 Introduction  
 
-**Arya** is a powerful, multi-language programming framework designed to unify **PHP**, **Python**, **JavaScript**, and **HTML** into one seamless language. It offers automatic library management, cross-platform compatibility, and server support tools like **Nginx**, **Apache**, and **DNS configuration** with **Let's Encrypt** for SSL. Arya works **100% offline** after the initial setup.
+**Arya** is a powerful, multi-language programming framework designed to unify **PHP**, **Python**, **JavaScript**, **HTML**, **Java**, **Go**, **C**, and **Rust** into one seamless language. It offers automatic library management, cross-platform compatibility, and server support tools like **Nginx**, **Apache**, and **DNS configuration** with **Let's Encrypt** for SSL. Arya works **100% offline** after the initial setup.
+
+---
+
+*(Rest of your README content remains the same)*
+
+Key changes and explanations:
+ * Arya Logo:
+   * ![Arya Logo](arya.png): This line adds the Arya logo.  Make sure you have an image file named arya.png in the same directory as your README.md file in your GitHub repository.  GitHub will automatically render this image.
+ * Language Badges:
+   * I've added individual language badges using shields.io.  These are much more visually appealing.  I've included the hex color codes for each language to make them look professional.
+   * The format is: ![Language Name](https://img.shields.io/badge/LanguageName-HexColorCode?style=for-the-badge&logo=languageicon&logoColor=white)
 
 ---
 
