@@ -7,7 +7,7 @@
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)](https://github.com/david0154/Arya/pulls)  
 [![Supported Languages](https://img.shields.io/badge/languages-PHP%20%7C%20Python%20%7C%20JavaScript%20%7C%20HTML%20%7C%20Java%20%7C%20Go%20%7C%20C%20%7C%20Rust-yellow)](https://github.com/david0154/Arya)
 
-![Arya Logo](arya.png)  
+![Arya Logo](Arya.png)  
 
 <br> 
 
