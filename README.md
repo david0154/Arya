@@ -32,14 +32,7 @@
 
 ---
 
-*(Rest of your README content remains the same)*
-
-Key changes and explanations:
- * Arya Logo:
-   * ![Arya Logo](arya.png): This line adds the Arya logo.  Make sure you have an image file named arya.png in the same directory as your README.md file in your GitHub repository.  GitHub will automatically render this image.
- * Language Badges:
-   * I've added individual language badges using shields.io.  These are much more visually appealing.  I've included the hex color codes for each language to make them look professional.
-   * The format is: ![Language Name](https://img.shields.io/badge/LanguageName-HexColorCode?style=for-the-badge&logo=languageicon&logoColor=white)
+* ![Arya](https://img.shields.io/badge/LanguageName-HexColorCode?style=for-the-badge&logo=languageicon&logoColor=white)
 
 ---
 
