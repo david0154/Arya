@@ -7,7 +7,7 @@ DEVELOPER_EMAIL="davidk76011@gmail.com"
 DEVELOPER_ADDRESS="Kolkata, Salt Lake Sector 5, West Bengal, India 🇮🇳"
 
 # Base languages to install
-LANGUAGES=("php" "python3" "nodejs" "nginx" "apache2" "openjdk-11-jdk" "golang" "gcc" "rustc" "composer" "npm" "maven" "rust")
+LANGUAGES=("php" "python3" "nodejs" "nginx" "apache2" "openjdk-11-jdk" "golang" "gcc" "rustc" "composer" "npm" "maven" "rust" "make" "libc-dev")
 
 # Update package lists and upgrade the system
 echo "Updating system packages..."
@@ -19,6 +19,23 @@ for lang in "${LANGUAGES[@]}"; do
     echo "Installing $lang..."
     sudo apt-get install -y $lang
 done
+
+# Install Go explicitly if it's missing
+echo "Checking if Go is installed..."
+if ! command -v go &> /dev/null
+then
+    echo "Go not found. Installing Go..."
+    sudo apt-get install -y golang
+fi
+
+# Verify Go installation
+go_version=$(go version)
+if [[ $? -eq 0 ]]; then
+    echo "Go installed successfully: $go_version"
+else
+    echo "Failed to install Go. Please check the installation steps."
+    exit 1
+fi
 
 # Install Let's Encrypt and Nginx/Apache SSL Configuration
 echo "Installing Let's Encrypt and configuring SSL for Apache and Nginx..."
@@ -59,59 +76,42 @@ arya --version
 
 # Ensure language directories exist and install libraries
 
+# Function to ensure directory existence and install libraries
+install_libraries() {
+    local language=$1
+    local dir=$2
+    local install_command=$3
+    
+    if [ ! -d "$dir" ]; then
+        echo "Directory $dir not found. Creating..."
+        mkdir -p "$dir"
+    fi
+    
+    echo "Installing libraries for $language..."
+    cd "$dir"
+    eval "$install_command"
+}
+
 # PHP Libraries Installation
-if [ ! -d "/usr/local/arya/php" ]; then
-    echo "Directory /usr/local/arya/php not found. Creating..."
-    mkdir -p /usr/local/arya/php
-fi
-echo "Installing all PHP Libraries..."
-cd /usr/local/arya/php
-composer global require laravel/installer symfony/console doctrine/orm phpunit/phpunit
+install_libraries "PHP" "/usr/local/arya/php" "composer install"
 
 # Python Libraries Installation
-if [ ! -d "/usr/local/arya/python" ]; then
-    echo "Directory /usr/local/arya/python not found. Creating..."
-    mkdir -p /usr/local/arya/python
-fi
-echo "Installing all Python Libraries..."
-cd /usr/local/arya/python
-pip install numpy pandas scikit-learn tensorflow keras flask django requests beautifulsoup4 matplotlib
+install_libraries "Python" "/usr/local/arya/python" "pip install -r requirements.txt"
 
 # Node.js Libraries Installation
-if [ ! -d "/usr/local/arya/nodejs" ]; then
-    echo "Directory /usr/local/arya/nodejs not found. Creating..."
-    mkdir -p /usr/local/arya/nodejs
-fi
-echo "Installing all Node.js Libraries..."
-cd /usr/local/arya/nodejs
-npm install express react lodash axios mongoose socket.io moment
+install_libraries "Node.js" "/usr/local/arya/nodejs" "npm install"
 
 # Go Libraries Installation
-if [ ! -d "/usr/local/arya/go" ]; then
-    echo "Directory /usr/local/arya/go not found. Creating..."
-    mkdir -p /usr/local/arya/go
-fi
-echo "Installing all Go Libraries..."
-cd /usr/local/arya/go
-go get github.com/gin-gonic/gin golang.org/x/tools github.com/sirupsen/logrus
+install_libraries "Go" "/usr/local/arya/go" "go get github.com/gin-gonic/gin golang.org/x/tools github.com/sirupsen/logrus"
 
 # Java Libraries Installation
-if [ ! -d "/usr/local/arya/java" ]; then
-    echo "Directory /usr/local/arya/java not found. Creating..."
-    mkdir -p /usr/local/arya/java
-fi
-echo "Installing all Java Libraries..."
-cd /usr/local/arya/java
-mvn install org.springframework.boot:spring-boot-starter org.apache.commons:commons-lang3 org.hibernate:hibernate-core
+install_libraries "Java" "/usr/local/arya/java" "mvn install"
 
 # Rust Libraries Installation
-if [ ! -d "/usr/local/arya/rust" ]; then
-    echo "Directory /usr/local/arya/rust not found. Creating..."
-    mkdir -p /usr/local/arya/rust
-fi
-echo "Installing all Rust Libraries..."
-cd /usr/local/arya/rust
-cargo install rocket actix-web serde serde_json
+install_libraries "Rust" "/usr/local/arya/rust" "cargo install rocket actix-web serde serde_json"
+
+# C Libraries Installation
+install_libraries "C" "/usr/local/arya/c" "gcc -o hello_world hello_world.c"
 
 echo "All base language libraries installed successfully!"
 
