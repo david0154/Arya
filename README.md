@@ -118,14 +118,14 @@ arya install <library-name>
 ```
 
 ### arya Update Arya  
-    ```bash
-      arya update
+   ```bash
+   arya update
 
   
+```
 
 
 
----
 
 🌐 Server Configuration
 
