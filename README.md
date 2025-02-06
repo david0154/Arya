@@ -32,7 +32,7 @@
 
 ---
 
-* ![Arya](https://img.shields.io/badge/Arya-HexColorCode?style=for-the-badge&logo=languageicon&logoColor=white)
+* ![Arya](https://img.shields.io/badge/Arya-HexColorCode?style=for-the-badge&logo=languageicon&logoColor=white)](https://github.com/david0154/Arya)
 
 ---
 
