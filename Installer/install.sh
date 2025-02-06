@@ -57,34 +57,58 @@ source ~/.bashrc
 echo "Verifying Arya installation..."
 arya --version
 
-# Install Base Language Libraries for each language
+# Ensure language directories exist and install libraries
 
 # PHP Libraries Installation
+if [ ! -d "/usr/local/arya/php" ]; then
+    echo "Directory /usr/local/arya/php not found. Creating..."
+    mkdir -p /usr/local/arya/php
+fi
 echo "Installing all PHP Libraries..."
 cd /usr/local/arya/php
 composer global require laravel/installer symfony/console doctrine/orm phpunit/phpunit
 
 # Python Libraries Installation
+if [ ! -d "/usr/local/arya/python" ]; then
+    echo "Directory /usr/local/arya/python not found. Creating..."
+    mkdir -p /usr/local/arya/python
+fi
 echo "Installing all Python Libraries..."
 cd /usr/local/arya/python
 pip install numpy pandas scikit-learn tensorflow keras flask django requests beautifulsoup4 matplotlib
 
 # Node.js Libraries Installation
+if [ ! -d "/usr/local/arya/nodejs" ]; then
+    echo "Directory /usr/local/arya/nodejs not found. Creating..."
+    mkdir -p /usr/local/arya/nodejs
+fi
 echo "Installing all Node.js Libraries..."
 cd /usr/local/arya/nodejs
 npm install express react lodash axios mongoose socket.io moment
 
 # Go Libraries Installation
+if [ ! -d "/usr/local/arya/go" ]; then
+    echo "Directory /usr/local/arya/go not found. Creating..."
+    mkdir -p /usr/local/arya/go
+fi
 echo "Installing all Go Libraries..."
 cd /usr/local/arya/go
 go get github.com/gin-gonic/gin golang.org/x/tools github.com/sirupsen/logrus
 
 # Java Libraries Installation
+if [ ! -d "/usr/local/arya/java" ]; then
+    echo "Directory /usr/local/arya/java not found. Creating..."
+    mkdir -p /usr/local/arya/java
+fi
 echo "Installing all Java Libraries..."
 cd /usr/local/arya/java
 mvn install org.springframework.boot:spring-boot-starter org.apache.commons:commons-lang3 org.hibernate:hibernate-core
 
 # Rust Libraries Installation
+if [ ! -d "/usr/local/arya/rust" ]; then
+    echo "Directory /usr/local/arya/rust not found. Creating..."
+    mkdir -p /usr/local/arya/rust
+fi
 echo "Installing all Rust Libraries..."
 cd /usr/local/arya/rust
 cargo install rocket actix-web serde serde_json
