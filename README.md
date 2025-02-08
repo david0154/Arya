@@ -33,30 +33,44 @@
 
 ## ✨ Key Features  
 
-- **Seamless Multi-Language Integration**  
-  Supports **PHP**, **Python**, **JavaScript**, **Go**, **C**, **Java**, **Rust**, and **HTML** within a unified framework, making cross-language development more efficient and flexible.  
-
-- **Cross-Platform Support**  
-  Runs on **Linux**, **Windows**, and **macOS**, ensuring portability and easy project management across all platforms.  
-
-- **Offline-First Development**  
-  Work without an internet connection after the initial setup. Perfect for environments with limited connectivity.  
-
-- **Automatic Library Management**  
-  Handles dependencies across multiple languages automatically, minimizing version conflicts and optimizing workflow.  
-
-- **Built-in Server Tools**  
-  Comes with **Nginx**, **Apache**, **DNS Configuration**, and **Let’s Encrypt SSL** support, making it easy to deploy and manage secure web applications.
+- **Seamless Multi-Language Integration**: Support for **PHP**, **Python**, **JavaScript**, **Java**, **Go**, **C**, **Rust**, and **HTML**.  
+- **Cross-Platform Support**: Available on **Linux**, **Windows**, and **macOS**.  
+- **Offline-First Development**: Work without an internet connection once Arya is set up.  
+- **Automatic Server and Database Management**:  
+  - **Nginx & Apache** for web hosting.  
+  - **Database Support**: MySQL, PostgreSQL, MongoDB with automatic configuration and backups.  
+  - **Mail Server** and **DNS Nameservers**.  
+  - **FTP Server** for file transfer and management.  
+  - **Let’s Encrypt SSL** for security.  
 
 ---
 
 ## 🔧 Built-in Automatic Configuration & Server Tools  
 
-Arya simplifies server management with its built-in configuration tools:  
-- **Nginx** – High-performance web server.  
-- **Apache** – Widely-used web server.  
-- **DNS Configuration** – Easy domain management.  
-- **Let’s Encrypt SSL** – Automatic free SSL setup for secure connections.  
+Arya’s automatic setup simplifies your development environment:  
+
+### 📂 Web Server Tools:  
+- **Nginx & Apache** – Automatic configuration for high-performance web hosting.  
+
+### 📧 Mail Server:  
+- Built-in **Postfix** and **Dovecot** for handling emails.  
+
+### 🌐 DNS Nameservers:  
+- Configure **custom DNS nameservers** for your domains.  
+
+### 🔒 SSL Configuration:  
+- **Let’s Encrypt SSL** for automatic secure certificate generation.  
+
+### 📦 Database Support:  
+- **MySQL** – Popular relational database with automatic installation and management.  
+- **PostgreSQL** – Advanced SQL database for high-performance applications.  
+- **MongoDB** – NoSQL database for flexible, scalable solutions.  
+- **Backup System** – Automatic backup of all databases with restore options.  
+
+### 🌐 FTP Server:  
+- Easily transfer files using the built-in **FTP server**.  
+
+---  
 
   
 [![Config Features](https://img.shields.io/badge/configuration-Automatic%20Setup%20%7C%20Nginx%20%7C%20Apache%20%7C%20DNS%20%7C%20SSL-brightgreen)](https://github.com/david0154/Arya)  
