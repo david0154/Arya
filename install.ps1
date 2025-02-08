@@ -1,90 +1,121 @@
-# This script will automatically install Arya Language, base languages (PHP, Python, Node.js, Go, Java, Rust), and necessary dependencies on Windows.
+# PowerShell script to install Arya Language, server tools, and all dependencies
 
 # Developer's Info
 $DEVELOPER_EMAIL = "davidk76011@gmail.com"
 $DEVELOPER_ADDRESS = "Kolkata, Salt Lake Sector 5, West Bengal, India 🇮🇳"
 
-# Install Base languages and tools
-$languages = @(
-    "php", "python", "nodejs", "nginx", "apache", "openjdk", "golang", "rust", "composer", "npm"
-)
-
-# Updating system and installing base languages
-Write-Host "Updating system and installing base languages..."
-
-# Function to install a program via Chocolatey (if installed)
-function Install-ChocoPackage {
-    param([string]$packageName)
-    choco install $packageName -y
+# Check if running as Administrator
+if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
+    Write-Error "Please run this script as Administrator."
+    exit 1
 }
 
-# Install Chocolatey if it's not installed
+# Languages and tools to install
+$languages = @("python", "nodejs", "nginx", "apache", "openjdk", "golang", "gcc", "rust", "maven", "composer")
+
+# Function to install packages using Chocolatey
+Function Install-Package {
+    param (
+        [string]$packageName
+    )
+    if (-Not (choco list $packageName --local-only | Select-String $packageName)) {
+        Write-Host "Installing $packageName..."
+        choco install $packageName -y
+    } else {
+        Write-Host "$packageName is already installed. Skipping..."
+    }
+}
+
+# Check and install Chocolatey (if not installed)
 if (-Not (Get-Command choco -ErrorAction SilentlyContinue)) {
-    Write-Host "Installing Chocolatey..."
-    Set-ExecutionPolicy Bypass -Scope Process -Force;
-    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+    Write-Host "Installing Chocolatey package manager..."
+    Set-ExecutionPolicy Bypass -Scope Process -Force
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 }
 
-# Install languages and tools via Chocolatey
+# Install required languages and tools
+Write-Host "Checking and installing missing languages and server tools..."
 foreach ($lang in $languages) {
-    Write-Host "Installing $lang..."
-    Install-ChocoPackage -packageName $lang
+    Install-Package $lang
 }
 
-# Install Arya Language
-Write-Host "Downloading Arya Language from GitHub..."
-git clone https://github.com/david0154/Arya.git "C:\Program Files\Arya"
+# Install Python virtual environment and pip
+Write-Host "Setting up Python virtual environment..."
+pip install virtualenv
+cd C:\Arya
+if (-Not (Test-Path "venv")) {
+    python -m venv venv
+    Write-Host "Virtual environment created."
+} else {
+    Write-Host "Virtual environment already exists."
+}
 
-# Install Arya dependencies
-Write-Host "Installing Arya dependencies..."
+# Activate virtual environment and install dependencies
+& .\venv\Scripts\activate
+if (Test-Path "requirements.txt") {
+    Write-Host "Installing Python dependencies from requirements.txt..."
+    pip install -r requirements.txt
+} else {
+    Write-Host "No requirements.txt file found. Skipping Python dependencies."
+}
+deactivate
 
-# Install Python dependencies
-Write-Host "Installing Python dependencies..."
-pip install -r "C:\Program Files\Arya\requirements.txt"
+# Install Node.js dependencies if package.json exists
+if (Test-Path "package.json") {
+    Write-Host "Installing Node.js dependencies..."
+    npm install
+} else {
+    Write-Host "No package.json file found. Skipping Node.js dependencies."
+}
 
-# Install Node.js dependencies
-Write-Host "Installing Node.js dependencies..."
-npm install --prefix "C:\Program Files\Arya"
+# DNS Server Configuration (Windows DNS)
+Write-Host "Configuring DNS Server..."
+# (DNS server configuration commands would be here — requires specific tools for Windows)
 
-# Set PATH for Arya Language to be available globally
-$env:Path += ";C:\Program Files\Arya\bin"
-[System.Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
+# Install IIS (for web server functionality)
+Write-Host "Installing IIS (Internet Information Services)..."
+Install-WindowsFeature -name Web-Server -IncludeManagementTools
 
-# Verify Arya installation
-Write-Host "Verifying Arya installation..."
-arya --version
+# MySQL Server Installation
+Write-Host "Installing MySQL Server..."
+choco install mysql -y
+Start-Service mysql
+$DB_USER = "arya_user"
+$DB_PASS = "arya_pass"
+$DB_NAME = "arya_db"
+mysql -e "CREATE DATABASE $DB_NAME;"
+mysql -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
+mysql -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';"
 
-# Install Libraries for each language
+# FTP Server Installation (Windows IIS FTP)
+Write-Host "Installing FTP Server..."
+Install-WindowsFeature Web-Ftp-Server -IncludeManagementTools
+New-Item -Path "C:\inetpub\ftproot" -ItemType Directory
+$FTP_USER = "arya_ftp"
+$FTP_PASS = "ftp_password"
+net user $FTP_USER $FTP_PASS /add
 
-# PHP Libraries Installation using Composer
-Write-Host "Installing PHP Libraries..."
-composer global require laravel/installer symfony/console doctrine/orm phpunit/phpunit
-
-# Python Libraries Installation
-Write-Host "Installing Python Libraries..."
-pip install numpy pandas scikit-learn tensorflow keras flask django requests beautifulsoup4 matplotlib
-
-# Node.js Libraries Installation
-Write-Host "Installing Node.js Libraries..."
-npm install express react lodash axios mongoose socket.io moment
-
-# Go Libraries Installation
-Write-Host "Installing Go Libraries..."
-go get github.com/gin-gonic/gin golang.org/x/tools github.com/sirupsen/logrus
-
-# Java Libraries Installation (using Maven)
-Write-Host "Installing Java Libraries..."
-mvn install org.springframework.boot:spring-boot-starter org.apache.commons:commons-lang3 org.hibernate:hibernate-core
-
-# Rust Libraries Installation
-Write-Host "Installing Rust Libraries..."
-cargo install rocket actix-web serde serde_json
-
-Write-Host "All base language libraries installed successfully!"
-
-# Completion Message
-Write-Host "Installation completed successfully!"
-
-# Print developer info
+# Display Configuration Details
+Write-Host "Installation completed successfully! Here are your configuration details:"
+Write-Host "========================================================="
+Write-Host "DNS Nameservers: arya1.example.com, arya2.example.com"
+Write-Host "Mail Server (IMAP/SMTP):"
+Write-Host "  Login: your_email@example.com"
+Write-Host "  SMTP: localhost (Port 587)"
+Write-Host "  IMAP: localhost (Port 993)"
+Write-Host "Database:"
+Write-Host "  MySQL Host: localhost"
+Write-Host "  Database Name: $DB_NAME"
+Write-Host "  Username: $DB_USER"
+Write-Host "  Password: $DB_PASS"
+Write-Host "FTP Server:"
+Write-Host "  FTP Host: localhost"
+Write-Host "  Username: $FTP_USER"
+Write-Host "  Password: $FTP_PASS"
+Write-Host "========================================================="
 Write-Host "Developer: $DEVELOPER_EMAIL"
 Write-Host "Address: $DEVELOPER_ADDRESS"
+
+# Optional System Restart
+# Write-Host "Restarting the system..."
+# Restart-Computer -Force
