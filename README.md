@@ -46,7 +46,7 @@ Arya simplifies server management with its built-in configuration tools:
 - **DNS Configuration** – Easy domain management.  
 - **Let’s Encrypt SSL** – Automatic free SSL setup for secure connections.  
 
-### Badges:  
+  
 [![Config Features](https://img.shields.io/badge/configuration-Automatic%20Setup%20%7C%20Nginx%20%7C%20Apache%20%7C%20DNS%20%7C%20SSL-brightgreen)](https://github.com/david0154/Arya)  
 [![Server Tools](https://img.shields.io/badge/server%20tools-Nginx%20%7C%20Apache%20%7C%20DNS%20Config%20%7C%20SSL%20Setup-blue)](https://github.com/david0154/Arya)  
 
