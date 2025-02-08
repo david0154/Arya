@@ -7,7 +7,18 @@
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)](https://github.com/david0154/Arya/pulls)  
 [![Supported Languages](https://img.shields.io/badge/languages-PHP%20%7C%20Python%20%7C%20JavaScript%20%7C%20HTML%20%7C%20Java%20%7C%20Go%20%7C%20C%20%7C%20Rust-yellow)](https://github.com/david0154/Arya)  
 [![Config Features](https://img.shields.io/badge/configuration-Automatic%20Setup%20%7C%20Nginx%20%7C%20Apache%20%7C%20DNS%20%7C%20SSL-brightgreen)](https://github.com/david0154/Arya)  
-[![Server Tools](https://img.shields.io/badge/server%20tools-Nginx%20%7C%20Apache%20%7C%20DNS%20Config%20%7C%20SSL%20Setup-blue)](https://github.com/david0154/Arya)  
+[![Server Tools](https://img.shields.io/badge/server%20tools-Nginx%20%7C%20Apache%20%7C%20DNS%20Config%20%7C%20SSL%20Setup-blue)](https://github.com/david0154/Arya) 
+## 📦 Supported Languages  
+
+![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
+![Go](https://img.shields.io/badge/Go-00ADD5?style=for-the-badge&logo=go&logoColor=white)
+![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
+![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
+
 
 ![Arya Logo](Arya.png)  
 
@@ -52,16 +63,6 @@ Arya simplifies server management with its built-in configuration tools:
 
 ---
 
-## 📦 Supported Languages  
-
-![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
-![Go](https://img.shields.io/badge/Go-00ADD5?style=for-the-badge&logo=go&logoColor=white)
-![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
-![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
 
 ---
 
