@@ -1,61 +1,65 @@
 #!/bin/bash
 
-# This script will automatically install Arya Language, server tools (nginx, apache), and all dependencies
+# This script automatically installs Arya Language, server tools, and all dependencies.
+# It checks existing languages and libraries, installs the missing ones, and sets up DNS, mail, MySQL, and FTP.
 
 # Developer's Info
 DEVELOPER_EMAIL="davidk76011@gmail.com"
 DEVELOPER_ADDRESS="Kolkata, Salt Lake Sector 5, West Bengal, India 🇮🇳"
 
-# Base languages to install
-LANGUAGES=("php" "python3" "nodejs" "nginx" "apache2" "openjdk-11-jdk" "golang" "gcc" "rustc" "maven" "npm" "composer")
+# Languages and tools to check and install
+LANGUAGES=("php" "python3" "nodejs" "nginx" "apache2" "openjdk-11-jdk" "golang" "gcc" "rustc" "maven" "npm" "composer" "python3-venv")
 
-# Update package lists and upgrade the system
+# Function to check if a package is installed
+check_installed() {
+    dpkg -l | grep -q $1
+}
+
+# Update and upgrade the system
 echo "Updating system packages..."
 sudo apt update -y && sudo apt upgrade -y
 
-# Install required base languages and server tools
-echo "Installing required base languages and server tools..."
+# Install required languages and tools
+echo "Checking and installing missing languages and server tools..."
 for lang in "${LANGUAGES[@]}"; do
-    echo "Installing $lang..."
-    sudo apt-get install -y $lang
+    if check_installed $lang; then
+        echo "$lang is already installed. Skipping..."
+    else
+        echo "Installing $lang..."
+        sudo apt-get install -y $lang
+    fi
 done
 
-# Install pip for Python
-echo "Installing pip for Python..."
+# Install pip for Python and upgrade it
+echo "Installing and upgrading pip for Python..."
 sudo apt install -y python3-pip
-
-# Ensure pip is upgraded
-echo "Upgrading pip..."
 python3 -m pip install --upgrade pip
 
-# Install Let's Encrypt and Nginx/Apache SSL Configuration
-echo "Installing Let's Encrypt and configuring SSL for Apache and Nginx..."
-sudo apt-get install -y certbot python3-certbot-nginx python3-certbot-apache
+# Create and activate Python virtual environment for Arya
+echo "Setting up Python virtual environment for Arya..."
+cd /usr/local/Arya || exit
+if [ ! -d "venv" ]; then
+    python3 -m venv venv
+    echo "Virtual environment created."
+else
+    echo "Virtual environment already exists."
+fi
 
-# Configure Nginx SSL (Let's Encrypt)
-echo "Configuring Nginx with Let's Encrypt SSL..."
-sudo systemctl restart nginx
-sudo certbot --nginx --non-interactive --agree-tos --email $DEVELOPER_EMAIL
+# Activate the virtual environment
+source venv/bin/activate
+echo "Virtual environment activated."
 
-# Configure Apache SSL (Let's Encrypt)
-echo "Configuring Apache with Let's Encrypt SSL..."
-sudo systemctl restart apache2
-sudo certbot --apache --non-interactive --agree-tos --email $DEVELOPER_EMAIL
-
-# Download Arya Language package (from GitHub or other repository)
-echo "Downloading Arya Language package..."
-git clone https://github.com/david0154/Arya.git /usr/local/Arya
-
-# Install Arya Language dependencies
-echo "Installing Arya dependencies..."
-cd /usr/local/Arya
-
-# Check if requirements.txt exists
+# Install Python dependencies inside the virtual environment
 if [ -f "requirements.txt" ]; then
-    python3 -m pip install -r requirements.txt
+    echo "Installing Python dependencies from requirements.txt..."
+    pip install -r requirements.txt
 else
     echo "No requirements.txt file found. Skipping Python dependencies."
 fi
+
+# Deactivate virtual environment
+deactivate
+echo "Python virtual environment deactivated."
 
 # Install Node.js dependencies if package.json exists
 if [ -f "package.json" ]; then
@@ -64,12 +68,8 @@ else
     echo "No package.json file found. Skipping Node.js dependencies."
 fi
 
-# Set permissions
-echo "Setting permissions for Arya directory..."
+# Set permissions for Arya directory
 sudo chown -R $USER:$USER /usr/local/Arya
-
-# Add Arya Language to system PATH
-echo "Adding Arya to system PATH..."
 echo 'export PATH=$PATH:/usr/local/Arya/bin' >> ~/.bashrc
 source ~/.bashrc
 
@@ -77,65 +77,101 @@ source ~/.bashrc
 echo "Verifying Arya installation..."
 arya --version
 
-# Install Base Language Libraries for each language
+# Install libraries for PHP, Python (venv), Node.js, Go, Java, Rust, and C
+echo "Installing language-specific libraries..."
 
-# PHP Libraries Installation
-echo "Installing all PHP Libraries..."
-cd /usr/local/Arya/php
+# PHP Libraries
 composer global require laravel/installer symfony/console doctrine/orm phpunit/phpunit
 
-# Python Libraries Installation
-echo "Installing all Python Libraries..."
-cd /usr/local/Arya/python
-pip install numpy pandas scikit-learn tensorflow keras flask django requests beautifulsoup4 matplotlib
+# Node.js Libraries
+npm install -g express react lodash axios mongoose socket.io moment
 
-# Node.js Libraries Installation
-echo "Installing all Node.js Libraries..."
-cd /usr/local/Arya/nodejs
-npm install express react lodash axios mongoose socket.io moment
-
-# Go Libraries Installation
-echo "Installing Go (Ensure modules are enabled)..."
-cd /usr/local/Arya/go
-
-# Ensure Go Modules are enabled (since 'go get' is deprecated outside modules)
-echo "Initializing Go module..."
+# Go Libraries
 go mod init example.com/myproject
-
-# Install Go libraries via go get with modules
 go get github.com/gin-gonic/gin golang.org/x/tools github.com/sirupsen/logrus
 
-# Java Libraries Installation
-echo "Installing all Java Libraries..."
-cd /usr/local/Arya/java
+# Java Libraries
 mvn install org.springframework.boot:spring-boot-starter org.apache.commons:commons-lang3 org.hibernate:hibernate-core
 
-# Rust Libraries Installation
-echo "Installing all Rust Libraries..."
-cd /usr/local/Arya/rust
-
-# Install rust libraries using cargo
+# Rust Libraries
 cargo install rocket actix-web serde serde_json
 
-# C Libraries Installation
-echo "Installing all C Libraries..."
-cd /usr/local/Arya/c
-
-# Install common C libraries using apt
+# C Libraries
 sudo apt install -y build-essential
-
-# Verify installation of GCC and other C tools
 gcc --version
 
-echo "All base language libraries installed successfully!"
+# DNS Configuration (arya1 and arya2)
+echo "Configuring DNS server with Bind9..."
+sudo apt install -y bind9
+IP=$(hostname -I | awk '{print $1}')
+cat <<EOF | sudo tee /etc/bind/named.conf.local
+zone "example.com" {
+    type master;
+    file "/etc/bind/db.example.com";
+};
+EOF
+cat <<EOF | sudo tee /etc/bind/db.example.com
+\$TTL    604800
+@       IN      SOA     arya1.example.com. admin.example.com. (
+                          2         ; Serial
+                     604800         ; Refresh
+                      86400         ; Retry
+                    2419200         ; Expire
+                     604800 )       ; Negative Cache TTL
+;
+@       IN      NS      arya1.example.com.
+@       IN      NS      arya2.example.com.
+arya1   IN      A       $IP
+arya2   IN      A       $IP
+EOF
+sudo systemctl restart bind9
 
-# Installation completed
-echo "Installation completed successfully!"
+# Mail Server Setup (Postfix and Dovecot)
+echo "Setting up mail server (Postfix and Dovecot)..."
+sudo apt install -y postfix dovecot-core dovecot-imapd
+sudo systemctl restart postfix dovecot
 
-# Print developer info
+# MySQL Database Setup
+echo "Installing and configuring MySQL server..."
+sudo apt install -y mysql-server
+sudo systemctl start mysql
+DB_USER="arya_user"
+DB_PASS="arya_pass"
+DB_NAME="arya_db"
+mysql -e "CREATE DATABASE $DB_NAME;"
+mysql -e "CREATE USER '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
+mysql -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';"
+
+# FTP Server Setup (VSFTPD)
+echo "Setting up FTP server (VSFTPD)..."
+sudo apt install -y vsftpd
+sudo systemctl restart vsftpd
+FTP_USER="arya_ftp"
+FTP_PASS="ftp_password"
+sudo useradd -m $FTP_USER -s /bin/bash
+echo "$FTP_USER:$FTP_PASS" | sudo chpasswd
+
+# Display Final Configuration Details
+echo "Installation completed successfully! Here are your configuration details:"
+echo "========================================================="
+echo "DNS Nameservers: arya1.example.com, arya2.example.com"
+echo "Mail Server (IMAP/SMTP):"
+echo "  Login: your_email@example.com"
+echo "  SMTP: $IP (Port 587)"
+echo "  IMAP: $IP (Port 993)"
+echo "Database:"
+echo "  MySQL Host: localhost"
+echo "  Database Name: $DB_NAME"
+echo "  Username: $DB_USER"
+echo "  Password: $DB_PASS"
+echo "FTP Server:"
+echo "  FTP Host: $IP"
+echo "  Username: $FTP_USER"
+echo "  Password: $FTP_PASS"
+echo "========================================================="
 echo "Developer: $DEVELOPER_EMAIL"
 echo "Address: $DEVELOPER_ADDRESS"
 
-# Reboot the system (optional)
+# Optional Reboot
 # echo "Rebooting system..."
 # sudo reboot
