@@ -5,11 +5,54 @@
 [![Platform Support](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-yellowgreen)](https://github.com/david0154/Arya)  
 [![Version](https://img.shields.io/badge/version-1.2.1-orange)](https://github.com/david0154/Arya)  
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)](https://github.com/david0154/Arya/pulls)  
-[![Supported Languages](https://img.shields.io/badge/languages-PHP%20%7C%20Python%20%7C%20JavaScript%20%7C%20HTML%20%7C%20Java%20%7C%20Go%20%7C%20C%20%7C%20Rust-yellow)](https://github.com/david0154/Arya)
+[![Supported Languages](https://img.shields.io/badge/languages-PHP%20%7C%20Python%20%7C%20JavaScript%20%7C%20HTML%20%7C%20Java%20%7C%20Go%20%7C%20C%20%7C%20Rust-yellow)](https://github.com/david0154/Arya)  
+[![Config Features](https://img.shields.io/badge/configuration-Automatic%20Setup%20%7C%20Nginx%20%7C%20Apache%20%7C%20DNS%20%7C%20SSL-brightgreen)](https://github.com/david0154/Arya)  
+[![Server Tools](https://img.shields.io/badge/server%20tools-Nginx%20%7C%20Apache%20%7C%20DNS%20Config%20%7C%20SSL%20Setup-blue)](https://github.com/david0154/Arya)  
 
 ![Arya Logo](Arya.png)  
 
-<br> 
+---
+
+## 🔥 Introduction  
+
+**Arya** is a revolutionary programming framework that consolidates **PHP**, **Python**, **JavaScript**, **HTML**, **Java**, **Go**, **C**, and **Rust** into a single, cohesive language. Designed to enhance the developer experience, Arya integrates powerful cross-platform capabilities, automatic library management, and built-in server support tools like **Nginx**, **Apache**, and **DNS configuration**, including **Let's Encrypt** for easy SSL setup. Once installed, **Arya** operates **100% offline**, providing developers with a fully functional environment without an internet connection.  
+
+---
+
+## ✨ Key Features  
+
+- **Seamless Multi-Language Integration**  
+  Supports **PHP**, **Python**, **JavaScript**, **Go**, **C**, **Java**, **Rust**, and **HTML** within a unified framework, making cross-language development more efficient and flexible.  
+
+- **Cross-Platform Support**  
+  Runs on **Linux**, **Windows**, and **macOS**, ensuring portability and easy project management across all platforms.  
+
+- **Offline-First Development**  
+  Work without an internet connection after the initial setup. Perfect for environments with limited connectivity.  
+
+- **Automatic Library Management**  
+  Handles dependencies across multiple languages automatically, minimizing version conflicts and optimizing workflow.  
+
+- **Built-in Server Tools**  
+  Comes with **Nginx**, **Apache**, **DNS Configuration**, and **Let’s Encrypt SSL** support, making it easy to deploy and manage secure web applications.
+
+---
+
+## 🔧 Built-in Automatic Configuration & Server Tools  
+
+Arya simplifies server management with its built-in configuration tools:  
+- **Nginx** – High-performance web server.  
+- **Apache** – Widely-used web server.  
+- **DNS Configuration** – Easy domain management.  
+- **Let’s Encrypt SSL** – Automatic free SSL setup for secure connections.  
+
+### Badges:  
+[![Config Features](https://img.shields.io/badge/configuration-Automatic%20Setup%20%7C%20Nginx%20%7C%20Apache%20%7C%20DNS%20%7C%20SSL-brightgreen)](https://github.com/david0154/Arya)  
+[![Server Tools](https://img.shields.io/badge/server%20tools-Nginx%20%7C%20Apache%20%7C%20DNS%20Config%20%7C%20SSL%20Setup-blue)](https://github.com/david0154/Arya)  
+
+---
+
+## 📦 Supported Languages  
 
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -20,36 +63,23 @@
 ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
 ![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)
 
-[![Arya Badge](https://img.shields.io/badge/Arya-Programming%20Language-blue?style=for-the-badge&logo=languageicon&logoColor=white)](https://github.com/david0154/Arya)
+---
+
+## 🚀 Getting Started  
+
+1. **Download Arya** from the [official GitHub repository](https://github.com/david0154/Arya).  
+2. **Follow the Installation Guide** to set up Arya on your machine.  
+3. Start developing multi-language projects with **cross-platform and server integration tools** at your fingertips.  
+
+---
+
+## 📬 Contact  
 
 **Developer:** David  
 **Email:** [📧 davidk76011@gmail.com](mailto:davidk76011@gmail.com)  
 **Location:** 🌍 India 🇮🇳  
 
 ---
-
-## 🔥 Introduction  
-
-**Arya** is a revolutionary programming framework that consolidates **PHP**, **Python**, **JavaScript**, **HTML**, **Java**, **Go**, **C**, and **Rust** into a single, cohesive language. Designed to enhance the developer experience, Arya integrates powerful cross-platform capabilities, automatic library management, and built-in server support tools like **Nginx**, **Apache**, and **DNS configuration**, including **Let's Encrypt** for easy SSL setup. Once the initial setup is done, **Arya** operates **100% offline**, providing developers with a fully functional environment even without an internet connection.
-
-![Arya](https://img.shields.io/badge/Arya-green?style=for-the-badge&logo=https://raw.githubusercontent.com/david0154/Arya/main/Arya.png)
-
-## ✨ Key Features  
-
-- **Seamless Multi-Language Integration:**  
-  Arya supports a wide range of languages, including **PHP**, **Python**, **JavaScript**, **Go**, **C**, **Java**, **Rust**, and **HTML**. This allows you to leverage the strengths of each language within a single unified framework, making cross-language development more efficient and less cumbersome.  
-
-- **True Cross-Platform Support:**  
-  Arya seamlessly runs on all major operating systems, including **Linux**, **Windows**, and **macOS**, ensuring your applications and projects are portable and easily manageable regardless of the platform.  
-
-- **Work Offline, Always:**  
-  Once installed, Arya runs fully **offline**, empowering you to work in environments with limited or no internet access, making it perfect for developers who need reliable, offline functionality.  
-
-- **Automatic Library Management:**  
-  Arya automatically handles library dependencies and ensures you always have the right libraries from trusted official sources. You don’t need to manually track versions or resolve conflicts, streamlining the development process.  
-
-- **Comprehensive Server Tools:**  
-  Arya comes equipped with powerful server management tools such as **Nginx**, **Apache**, **DNS configuration**, and **Let’s Encrypt SSL** setup. These tools ensure that your web applications are secure, stable, and easily deployable without needing third-party services.
 
 ## 🔧 Arya’s Own Library System
 
