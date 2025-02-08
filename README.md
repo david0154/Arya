@@ -5,9 +5,10 @@
 [![Platform Support](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS-yellowgreen)](https://github.com/david0154/Arya)  
 [![Version](https://img.shields.io/badge/version-1.2.1-orange)](https://github.com/david0154/Arya)  
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen)](https://github.com/david0154/Arya/pulls)  
-[![Supported Languages](https://img.shields.io/badge/languages-PHP%20%7C%20Python%20%7C%20JavaScript%20%7C%20HTML%20%7C%20Java%20%7C%20Go%20%7C%20C%20%7C%20Rust-yellow)](https://github.com/david0154/Arya)  
-[![Config Features](https://img.shields.io/badge/configuration-Automatic%20Setup%20%7C%20Nginx%20%7C%20Apache%20%7C%20DNS%20%7C%20SSL-brightgreen)](https://github.com/david0154/Arya)  
+[![Supported Languages](https://img.shields.io/badge/languages-PHP%20%7C%20Python%20%7C%20JavaScript%20%7C%20HTML%20%7C%20Java%20%7C%20Go%20%7C%20C%20%7C%20Rust-yellow)](https://github.com/david0154/Arya)   
 [![Server Tools](https://img.shields.io/badge/server%20tools-Nginx%20%7C%20Apache%20%7C%20DNS%20Config%20%7C%20SSL%20Setup-blue)](https://github.com/david0154/Arya) 
+[![Database Support](https://img.shields.io/badge/database-MySQL%20%7C%20PostgreSQL%20%7C%20MongoDB-blue)](https://github.com/david0154/Arya)  
+[![Configuration Features](https://img.shields.io/badge/configuration-Automatic%20Setup%20%7C%20Mail%20Server%20%7C%20DNS%20%7C%20FTP%20%7C%20Database%20%7C%20SSL-brightgreen)](https://github.com/david0154/Arya)  
 ## 📦 Supported Languages  
 
 ![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)
