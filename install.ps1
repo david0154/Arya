@@ -1,103 +1,110 @@
-# PowerShell script to install Arya Language, server tools, and all dependencies
+# Auto-installer script for Arya Language, server tools, and dependencies.
+# Updated for 2025 version compatibility on Windows.
 
-# Developer's Info
-$DEVELOPER_EMAIL = "davidk76011@gmail.com"
-$DEVELOPER_ADDRESS = "Kolkata, Salt Lake Sector 5, West Bengal, India 🇮🇳"
+$DeveloperEmail = "davidk76011@gmail.com"
+$DeveloperAddress = "Kolkata, Salt Lake Sector 5, West Bengal, India"
 
-# Ensure script is run as Administrator
-if (-not ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    Write-Error "Please run this script as Administrator."
-    exit 1
+# Languages and tools to install
+$Languages = @("php", "python", "nodejs", "nginx", "apache2", "openjdk-17", "golang", "gcc", "rust", "maven", "npm", "composer", "python-venv")
+
+# Check if package is installed
+Function Check-Installed {
+    param($PackageName)
+    $installed = Get-Command $PackageName -ErrorAction SilentlyContinue
+    return $installed -ne $null
 }
 
-# List of languages and tools
-$languages = @("python", "nodejs", "nginx", "apache-httpd", "openjdk", "golang", "gcc", "rust", "maven", "composer")
+# Update system
+Write-Host "Updating system packages..."
+Start-Process "powershell.exe" -ArgumentList "Set-ExecutionPolicy Unrestricted -Scope Process -Force" -NoNewWindow -Wait
 
-Function Install-Package {
-    param ([string]$packageName)
-    if (-Not (choco list $packageName --local-only | Select-String "^$packageName")) {
-        Write-Host "Installing $packageName..."
-        choco install $packageName -y
+# Install essential build tools
+Write-Host "Installing essential tools..."
+Invoke-WebRequest "https://aka.ms/install-vs2019" -OutFile "vs_installer.exe"
+Start-Process "vs_installer.exe" -ArgumentList "/quiet" -NoNewWindow -Wait
+Remove-Item "vs_installer.exe"
+
+# Install packages
+Write-Host "Installing required languages and server tools..."
+foreach ($lang in $Languages) {
+    if (Check-Installed -PackageName $lang) {
+        Write-Host "$lang is already installed."
     } else {
-        Write-Host "$packageName is already installed. Skipping..."
+        Write-Host "Installing $lang..."
+        if ($lang -eq "python") {
+            # Install Python via Windows Store (or specify custom method for installation)
+            Invoke-WebRequest "https://www.python.org/ftp/python/3.10.0/python-3.10.0.exe" -OutFile "python_installer.exe"
+            Start-Process "python_installer.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -NoNewWindow -Wait
+            Remove-Item "python_installer.exe"
+        } elseif ($lang -eq "nodejs") {
+            Invoke-WebRequest "https://nodejs.org/dist/v20.0.0/node-v20.0.0-x64.msi" -OutFile "nodejs_installer.msi"
+            Start-Process "msiexec.exe" -ArgumentList "/i nodejs_installer.msi /quiet" -NoNewWindow -Wait
+            Remove-Item "nodejs_installer.msi"
+        } else {
+            Write-Host "$lang installation method is not implemented."
+        }
     }
 }
 
-# Install Chocolatey if not available
-if (-Not (Get-Command choco -ErrorAction SilentlyContinue)) {
-    Write-Host "Installing Chocolatey..."
-    Set-ExecutionPolicy Bypass -Scope Process -Force
-    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-    refreshenv
-}
+# Install and upgrade pip
+Write-Host "Installing pip..."
+Start-Process "python.exe" -ArgumentList "-m pip install --upgrade pip setuptools wheel" -NoNewWindow -Wait
 
-# Install listed packages
-Write-Host "`nInstalling required languages and server tools..."
-foreach ($lang in $languages) {
-    Install-Package $lang
+# Setup Python virtual environment
+Write-Host "Setting up Python venv for Arya..."
+$AryaPath = "C:\Program Files\Arya"
+If (!(Test-Path $AryaPath)) {
+    New-Item -ItemType Directory -Force -Path $AryaPath
 }
+Set-Location -Path $AryaPath
+If (!(Test-Path "venv")) {
+    Start-Process "python.exe" -ArgumentList "-m venv venv" -NoNewWindow -Wait
+    Write-Host "Virtual environment created."
+}
+# Activating virtual environment manually
+# Run `venv\Scripts\activate` manually from PowerShell if needed
 
-# Python virtual environment setup
-Write-Host "`nSetting up Python virtual environment..."
-if (-Not (Test-Path "C:\Arya")) { New-Item -Path "C:\" -Name "Arya" -ItemType Directory }
-cd C:\Arya
-if (-Not (Test-Path "venv")) {
-    python -m venv venv
-    Write-Host "Created Python virtual environment."
-}
-.\venv\Scripts\activate
-if (Test-Path "requirements.txt") {
-    Write-Host "Installing dependencies from requirements.txt..."
-    pip install --upgrade pip
-    pip install -r requirements.txt
+# Node.js dependencies
+If (Test-Path "package.json") {
+    Write-Host "Installing Node.js dependencies..."
+    Start-Process "npm" -ArgumentList "install" -NoNewWindow -Wait
 } else {
-    Write-Host "No requirements.txt found."
-}
-deactivate
-
-# Node.js dependency install
-if (Test-Path "package.json") {
-    Write-Host "`nInstalling Node.js dependencies..."
-    npm install
+    Write-Host "No Node.js dependencies found."
 }
 
-# Configure IIS and FTP
-Write-Host "`nInstalling IIS and FTP server..."
-Install-WindowsFeature -Name Web-Server, Web-Ftp-Server -IncludeManagementTools
-New-Item -Path "C:\inetpub\ftproot" -ItemType Directory -Force
-$FTP_USER = "arya_ftp"
-$FTP_PASS = "ftp_password"
-net user $FTP_USER $FTP_PASS /add
+# Install AI Libraries (PyTorch, TensorFlow, Hugging Face, etc.)
+Write-Host "Installing AI development libraries..."
+Start-Process "python.exe" -ArgumentList "-m pip install torch torchvision torchaudio" -NoNewWindow -Wait
+Start-Process "python.exe" -ArgumentList "-m pip install tensorflow transformers datasets" -NoNewWindow -Wait
 
-# Install MySQL
-Write-Host "`nInstalling MySQL Server..."
-choco install mysql -y
-Start-Service mysql
-$DB_USER = "arya_user"
-$DB_PASS = "arya_pass"
-$DB_NAME = "arya_db"
-mysql -e "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
-mysql -e "CREATE USER IF NOT EXISTS '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';"
-mysql -e "GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';"
+# DNS Setup (Bind9) on Windows alternative (like using IIS or DNS server setup in Windows)
+Write-Host "DNS Setup: Note - DNS setup is more complex on Windows and needs IIS or custom DNS server."
+# Not available directly in Windows PowerShell without further configurations
 
-# Display Summary
-Write-Host "`n========================================================="
-Write-Host "Arya Language & Server Setup Completed Successfully!"
-Write-Host "---------------------------------------------------------"
-Write-Host "DNS Nameservers: arya1.example.com, arya2.example.com"
-Write-Host "`nMail Server (IMAP/SMTP):"
-Write-Host "  Email: your_email@example.com"
-Write-Host "  SMTP: localhost (Port 587)"
-Write-Host "  IMAP: localhost (Port 993)"
-Write-Host "`nDatabase Info:"
-Write-Host "  Host: localhost"
-Write-Host "  DB: $DB_NAME"
-Write-Host "  User: $DB_USER"
-Write-Host "  Password: $DB_PASS"
-Write-Host "`nFTP Server Info:"
-Write-Host "  Host: localhost"
-Write-Host "  User: $FTP_USER"
-Write-Host "  Password: $FTP_PASS"
-Write-Host "`nDeveloper: $DEVELOPER_EMAIL"
-Write-Host "Location: $DEVELOPER_ADDRESS"
-Write-Host "========================================================="
+# Mail Server (use SMTP server on Windows)
+Write-Host "Installing Mail Server: Please configure Mail Server settings manually (e.g., using hMailServer)"
+# hMailServer or another SMTP server needs to be set up manually on Windows
+
+# MySQL
+Write-Host "Setting up MySQL..."
+Invoke-WebRequest "https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-web-community-8.0.29.0.msi" -OutFile "mysql_installer.msi"
+Start-Process "msiexec.exe" -ArgumentList "/i mysql_installer.msi /quiet" -NoNewWindow -Wait
+Remove-Item "mysql_installer.msi"
+
+# FTP Server (e.g., FileZilla Server)
+Write-Host "Installing FTP server (FileZilla Server)..."
+Invoke-WebRequest "https://download.filezilla-project.org/server/FileZilla_Server-0_9_60_2.exe" -OutFile "filezilla_installer.exe"
+Start-Process "filezilla_installer.exe" -ArgumentList "/S" -NoNewWindow -Wait
+Remove-Item "filezilla_installer.exe"
+
+# Summary
+Write-Host "Installation Complete!"
+Write-Host "Developer: $DeveloperEmail"
+Write-Host "Location: $DeveloperAddress"
+Write-Host "Note: Manual configurations may be required for some services like DNS, MySQL, and FTP."
+
+# Optional reboot
+$confirm = Read-Host "Reboot the system? (y/n)"
+If ($confirm -eq "y") {
+    Restart-Computer
+}
