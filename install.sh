@@ -1,110 +1,206 @@
-# Auto-installer script for Arya Language, server tools, and dependencies.
-# Updated for 2025 version compatibility on Windows.
+#!/bin/bash
 
-$DeveloperEmail = "davidk76011@gmail.com"
-$DeveloperAddress = "Kolkata, Salt Lake Sector 5, West Bengal, India"
+# Auto-installer script for Arya Language, server tools, and dependencies.
+# Updated for 2025 version compatibility and stable installation on Ubuntu 24.04+.
+
+DEVELOPER_EMAIL="davidk76011@gmail.com"
+DEVELOPER_ADDRESS="Kolkata, Salt Lake Sector 5, West Bengal, India"
 
 # Languages and tools to install
-$Languages = @("php", "python", "nodejs", "nginx", "apache2", "openjdk-17", "golang", "gcc", "rust", "maven", "npm", "composer", "python-venv")
+LANGUAGES=("php" "python3" "nodejs" "nginx" "apache2" "openjdk-17-jdk" "golang-go" "gcc" "rustc" "maven" "npm" "composer" "python3-venv")
 
 # Check if package is installed
-Function Check-Installed {
-    param($PackageName)
-    $installed = Get-Command $PackageName -ErrorAction SilentlyContinue
-    return $installed -ne $null
+check_installed() {
+    dpkg -l | grep -qw "$1"
 }
 
 # Update system
-Write-Host "Updating system packages..."
-Start-Process "powershell.exe" -ArgumentList "Set-ExecutionPolicy Unrestricted -Scope Process -Force" -NoNewWindow -Wait
+echo "Updating system packages..."
+sudo apt update -y && sudo apt upgrade -y
 
 # Install essential build tools
-Write-Host "Installing essential tools..."
-Invoke-WebRequest "https://aka.ms/install-vs2019" -OutFile "vs_installer.exe"
-Start-Process "vs_installer.exe" -ArgumentList "/quiet" -NoNewWindow -Wait
-Remove-Item "vs_installer.exe"
+echo "Installing essential tools..."
+sudo apt install -y build-essential curl software-properties-common gnupg2 unzip lsb-release
+
+# Add repositories for latest versions
+echo "Adding latest repositories..."
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+curl -fsSL https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb -o packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
 
 # Install packages
-Write-Host "Installing required languages and server tools..."
-foreach ($lang in $Languages) {
-    if (Check-Installed -PackageName $lang) {
-        Write-Host "$lang is already installed."
-    } else {
-        Write-Host "Installing $lang..."
-        if ($lang -eq "python") {
-            # Install Python via Windows Store (or specify custom method for installation)
-            Invoke-WebRequest "https://www.python.org/ftp/python/3.10.0/python-3.10.0.exe" -OutFile "python_installer.exe"
-            Start-Process "python_installer.exe" -ArgumentList "/quiet InstallAllUsers=1 PrependPath=1" -NoNewWindow -Wait
-            Remove-Item "python_installer.exe"
-        } elseif ($lang -eq "nodejs") {
-            Invoke-WebRequest "https://nodejs.org/dist/v20.0.0/node-v20.0.0-x64.msi" -OutFile "nodejs_installer.msi"
-            Start-Process "msiexec.exe" -ArgumentList "/i nodejs_installer.msi /quiet" -NoNewWindow -Wait
-            Remove-Item "nodejs_installer.msi"
-        } else {
-            Write-Host "$lang installation method is not implemented."
-        }
-    }
-}
+echo "Installing required languages and server tools..."
+for lang in "${LANGUAGES[@]}"; do
+    if check_installed $lang; then
+        echo "$lang is already installed."
+    else
+        echo "Installing $lang..."
+        sudo apt-get install -y $lang
+    fi
+done
 
 # Install and upgrade pip
-Write-Host "Installing pip..."
-Start-Process "python.exe" -ArgumentList "-m pip install --upgrade pip setuptools wheel" -NoNewWindow -Wait
+echo "Installing pip..."
+sudo apt install -y python3-pip
+python3 -m pip install --upgrade pip setuptools wheel
 
 # Setup Python virtual environment
-Write-Host "Setting up Python venv for Arya..."
-$AryaPath = "C:\Program Files\Arya"
-If (!(Test-Path $AryaPath)) {
-    New-Item -ItemType Directory -Force -Path $AryaPath
-}
-Set-Location -Path $AryaPath
-If (!(Test-Path "venv")) {
-    Start-Process "python.exe" -ArgumentList "-m venv venv" -NoNewWindow -Wait
-    Write-Host "Virtual environment created."
-}
-# Activating virtual environment manually
-# Run `venv\Scripts\activate` manually from PowerShell if needed
+echo "Setting up Python venv for Arya..."
+cd /usr/local/Arya || sudo mkdir -p /usr/local/Arya && cd /usr/local/Arya
+if [ ! -d "venv" ]; then
+    python3 -m venv venv
+    echo "Virtual environment created."
+fi
+source venv/bin/activate
+echo "Virtual environment activated."
+[ -f "requirements.txt" ] && pip install -r requirements.txt || echo "No requirements.txt found."
+deactivate
 
 # Node.js dependencies
-If (Test-Path "package.json") {
-    Write-Host "Installing Node.js dependencies..."
-    Start-Process "npm" -ArgumentList "install" -NoNewWindow -Wait
-} else {
-    Write-Host "No Node.js dependencies found."
-}
+[ -f "package.json" ] && npm install || echo "No Node.js dependencies found."
+
+# Set path
+sudo chown -R $USER:$USER /usr/local/Arya
+[[ ":$PATH:" != *":/usr/local/Arya/bin:"* ]] && echo 'export PATH=$PATH:/usr/local/Arya/bin' >> ~/.bashrc && source ~/.bashrc
+
+# Verify Arya (replace with actual verification command)
+echo "Checking Arya..."
+command -v arya && arya --version || echo "Arya command not found."
+
+# Install popular dev libraries
+echo "Installing language libraries..."
+
+# PHP
+composer global require laravel/installer symfony/console doctrine/orm phpunit/phpunit
+
+# Node.js
+npm install -g express react lodash axios mongoose socket.io moment
+
+# Go
+go mod init example.com/arya
+go get github.com/gin-gonic/gin golang.org/x/tools github.com/sirupsen/logrus
+
+# Java
+mvn dependency:get -Dartifact=org.springframework.boot:spring-boot-starter:3.2.0
+mvn dependency:get -Dartifact=org.apache.commons:commons-lang3:3.13.0
+
+# Rust
+cargo install rocket actix-web serde serde_json
 
 # Install AI Libraries (PyTorch, TensorFlow, Hugging Face, etc.)
-Write-Host "Installing AI development libraries..."
-Start-Process "python.exe" -ArgumentList "-m pip install torch torchvision torchaudio" -NoNewWindow -Wait
-Start-Process "python.exe" -ArgumentList "-m pip install tensorflow transformers datasets" -NoNewWindow -Wait
+echo "Installing AI development libraries..."
 
-# DNS Setup (Bind9) on Windows alternative (like using IIS or DNS server setup in Windows)
-Write-Host "DNS Setup: Note - DNS setup is more complex on Windows and needs IIS or custom DNS server."
-# Not available directly in Windows PowerShell without further configurations
+# Core ML/DL libraries
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install tensorflow
+pip install transformers datasets
 
-# Mail Server (use SMTP server on Windows)
-Write-Host "Installing Mail Server: Please configure Mail Server settings manually (e.g., using hMailServer)"
-# hMailServer or another SMTP server needs to be set up manually on Windows
+# Data science tools
+pip install scikit-learn pandas matplotlib seaborn jupyter notebook
+
+# NLP and CV libraries
+pip install spacy nltk opencv-python opencv-python-headless
+
+# spaCy English model
+python -m spacy download en_core_web_sm
+
+# Extended AI/ML Toolkit Installation
+echo "Installing extended AI/ML and deployment tools..."
+
+# Object Detection & Vision
+pip install ultralytics  # YOLOv8
+
+# FastAI
+pip install fastai
+
+# Deployment frameworks
+pip install fastapi uvicorn gradio flask
+
+# LLMs and Prompt Engineering
+pip install langchain openai tiktoken
+
+# Model optimization and deployment
+pip install onnx onnxruntime openvino-dev
+
+# Speech and audio processing
+pip install speechrecognition pyttsx3 gtts
+
+echo "All AI libraries and tools installed successfully."
+# DNS Setup
+echo "Setting up DNS (Bind9)..."
+sudo apt install -y bind9
+IP=$(hostname -I | awk '{print $1}')
+cat <<EOF | sudo tee /etc/bind/named.conf.local
+zone "example.com" {
+    type master;
+    file "/etc/bind/db.example.com";
+};
+EOF
+cat <<EOF | sudo tee /etc/bind/db.example.com
+\$TTL    604800
+@       IN      SOA     arya1.example.com. admin.example.com. (
+                          2025042301 ; Serial
+                          604800     ; Refresh
+                          86400      ; Retry
+                          2419200    ; Expire
+                          604800 )   ; Negative Cache TTL
+;
+@       IN      NS      arya1.example.com.
+@       IN      NS      arya2.example.com.
+arya1   IN      A       $IP
+arya2   IN      A       $IP
+EOF
+sudo systemctl restart bind9
+
+# Mail Server
+echo "Installing Postfix and Dovecot..."
+sudo apt install -y postfix dovecot-core dovecot-imapd mailutils
+sudo systemctl restart postfix dovecot
 
 # MySQL
-Write-Host "Setting up MySQL..."
-Invoke-WebRequest "https://dev.mysql.com/get/Downloads/MySQLInstaller/mysql-installer-web-community-8.0.29.0.msi" -OutFile "mysql_installer.msi"
-Start-Process "msiexec.exe" -ArgumentList "/i mysql_installer.msi /quiet" -NoNewWindow -Wait
-Remove-Item "mysql_installer.msi"
+echo "Setting up MySQL..."
+sudo apt install -y mysql-server
+sudo systemctl enable --now mysql
+DB_USER="arya_user"
+DB_PASS="arya_pass"
+DB_NAME="arya_db"
+sudo mysql <<EOF
+CREATE DATABASE IF NOT EXISTS $DB_NAME;
+CREATE USER IF NOT EXISTS '$DB_USER'@'localhost' IDENTIFIED BY '$DB_PASS';
+GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'localhost';
+FLUSH PRIVILEGES;
+EOF
 
-# FTP Server (e.g., FileZilla Server)
-Write-Host "Installing FTP server (FileZilla Server)..."
-Invoke-WebRequest "https://download.filezilla-project.org/server/FileZilla_Server-0_9_60_2.exe" -OutFile "filezilla_installer.exe"
-Start-Process "filezilla_installer.exe" -ArgumentList "/S" -NoNewWindow -Wait
-Remove-Item "filezilla_installer.exe"
+# FTP
+echo "Installing FTP server (VSFTPD)..."
+sudo apt install -y vsftpd
+sudo systemctl restart vsftpd
+FTP_USER="arya_ftp"
+FTP_PASS="ftp_password"
+sudo useradd -m $FTP_USER -s /bin/bash
+echo "$FTP_USER:$FTP_PASS" | sudo chpasswd
 
 # Summary
-Write-Host "Installation Complete!"
-Write-Host "Developer: $DeveloperEmail"
-Write-Host "Location: $DeveloperAddress"
-Write-Host "Note: Manual configurations may be required for some services like DNS, MySQL, and FTP."
+echo -e "\nInstallation Complete!"
+cat <<INFO
+=========================================================
+DNS Nameservers: arya1.example.com, arya2.example.com
+Mail Server (IMAP/SMTP):
+  SMTP: $IP (Port 587)
+  IMAP: $IP (Port 993)
+MySQL:
+  Host: localhost
+  Database: $DB_NAME
+  User: $DB_USER
+  Password: $DB_PASS
+FTP:
+  Host: $IP
+  User: $FTP_USER
+  Password: $FTP_PASS
+Developer: $DEVELOPER_EMAIL
+Location: $DEVELOPER_ADDRESS
+=========================================================
+INFO
 
 # Optional reboot
-$confirm = Read-Host "Reboot the system? (y/n)"
-If ($confirm -eq "y") {
-    Restart-Computer
-}
+# read -p "Reboot the system? (y/n): " confirm && [[ "$confirm" =~ ^[Yy]$ ]] && sudo reboot
