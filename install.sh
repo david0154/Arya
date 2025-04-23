@@ -87,6 +87,45 @@ mvn dependency:get -Dartifact=org.apache.commons:commons-lang3:3.13.0
 # Rust
 cargo install rocket actix-web serde serde_json
 
+# Install AI Libraries (PyTorch, TensorFlow, Hugging Face, etc.)
+echo "Installing AI development libraries..."
+
+# Core ML/DL libraries
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install tensorflow
+pip install transformers datasets
+
+# Data science tools
+pip install scikit-learn pandas matplotlib seaborn jupyter notebook
+
+# NLP and CV libraries
+pip install spacy nltk opencv-python opencv-python-headless
+
+# spaCy English model
+python -m spacy download en_core_web_sm
+
+# Extended AI/ML Toolkit Installation
+echo "Installing extended AI/ML and deployment tools..."
+
+# Object Detection & Vision
+pip install ultralytics  # YOLOv8
+
+# FastAI
+pip install fastai
+
+# Deployment frameworks
+pip install fastapi uvicorn gradio flask
+
+# LLMs and Prompt Engineering
+pip install langchain openai tiktoken
+
+# Model optimization and deployment
+pip install onnx onnxruntime openvino-dev
+
+# Speech and audio processing
+pip install speechrecognition pyttsx3 gtts
+
+echo "All AI libraries and tools installed successfully."
 # DNS Setup
 echo "Setting up DNS (Bind9)..."
 sudo apt install -y bind9
